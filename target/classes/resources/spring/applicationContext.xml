@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- 使用 annotation 注解方式--> 
+	<context:annotation-config />
+	
+	<!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 此处检查com.cyou包下的所有文件--> 
+	<context:component-scan base-package="com.cyou" />
+	<!-- 引入项目配置文件 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:resources/config.properties</value>
+				<value>classpath:resources/hibernate/hibernate.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!--MemCache 缓存 START-->
+	<bean id="memCache" class="com.cyou.base.util.MemcacheCacheManager" init-method="init" destroy-method="destory">
+	</bean>
+	<!-- 加载其他spring配置文件 -->
+	<!-- 持久化配置管理 -->
+	<import resource="applicationContext-persistence-admin.xml" />
+	<!-- 
+	<import resource="applicationContext-quartz.xml" />
+	 -->
+</beans>

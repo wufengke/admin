@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name>admin</display-name>
+   <context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>admin.root</param-value>
+	</context-param>
+  	<!-- 配置log4j配置文件 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>WEB-INF/classes/resources/log4j/log4j.properties</param-value>
+	</context-param>
+	<!-- 配置spring配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		classpath:resources/spring/applicationContext.xml
+		classpath:resources/spring/applicationContext-security.xml
+		</param-value>
+	</context-param>
+	<!-- 启动 springSecurity -->
+	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter>  
+      <filter-name>ResponseOverrideFilter</filter-name>  
+      <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>  
+   </filter>  
+
+    <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>  
+    <filter-name>ResponseOverrideFilter</filter-name>  
+      <url-pattern>*.do</url-pattern>  
+    </filter-mapping>  
+    <filter-mapping>  
+      <filter-name>ResponseOverrideFilter</filter-name>  
+      <url-pattern>*.jsp</url-pattern>  
+    </filter-mapping>  
+    
+    
+    
+	<!-- 启动 log4j Listener -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<!-- 启动 Proxool Listener -->
+	<listener>
+		<listener-class>com.cyou.core.db.ProxoolListener</listener-class>
+	</listener>
+  	<!-- 配置在视图层打开session连接数据库 Open Session In View Filter -->
+	<filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  	
+  	<filter>
+		<filter-name>language</filter-name>
+		<filter-class>com.cyou.common.filter.LanguageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>language</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+  	
+  	<!-- 启动spring Spring Listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 启动spring Spring security -->
+	<listener>
+      <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+	<listener>
+		<listener-class>com.cyou.base.listener.InitListener</listener-class>
+	</listener>
+	<!-- 配置编码过滤器，强制转成UTF-8 -->
+	<filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <!-- 强制进行转码 -->
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Struts2 Filter -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>struts-default.xml,struts-plugin.xml,resources/struts/struts.xml</param-value>
+		</init-param>
+        <init-param>
+        	<param-name>actionPackages</param-name>
+        	<param-value>com.cyou</param-value>
+        </init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 配置proxool数据源监控器  -->
+	<servlet>
+		<servlet-name>Admin</servlet-name>
+		<servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Admin</servlet-name>
+		<url-pattern>/admin.html</url-pattern>
+	</servlet-mapping>
+    <!-- 配置欢迎页  -->
+    <welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+  	</welcome-file-list>
+  	
+  	<error-page>
+		<error-code>403</error-code>
+		<location>/403.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
+</web-app>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+	<global-method-security secured-annotations="enabled">
+	</global-method-security>
+    <http auto-config="true" access-denied-page="/403.jsp">
+   		<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+   		<intercept-url pattern="/login/toLoginPage.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+   		<intercept-url pattern="/password/changePassword.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+   		<intercept-url pattern="/password/toChangePasswordPage.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <!--application模块相关权限 开始  -->
+        <intercept-url pattern="/application/applicationList.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
+        <intercept-url pattern="/application/addApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
+        <intercept-url pattern="/application/updateApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
+        <intercept-url pattern="/application/deleteApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
+        <!--application模块相关权限 结束  -->
+        <!--User模块相关权限 开始  -->
+        <intercept-url pattern="/user/userList.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <intercept-url pattern="/user/addUser.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <intercept-url pattern="/user/updateUser.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <intercept-url pattern="/user/deleteUser.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <intercept-url pattern="/user/userRole.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <intercept-url pattern="/user/addUserRole.action" access="ROLE_ADMIN,ROLE_USER"/>
+        <!--User模块相关权限 结束  -->
+        <!--ROLE模块相关权限 开始  -->
+        <intercept-url pattern="/role/roleList.action" access="ROLE_ADMIN,ROLE_ROLE"/>
+        <intercept-url pattern="/role/addRole.action" access="ROLE_ADMIN,ROLE_ROLE"/>
+        <intercept-url pattern="/role/updateRole.action" access="ROLE_ADMIN,ROLE_ROLE"/>
+        <!--category模块相关权限 开始  -->  
+        <intercept-url pattern="/category/categoryList.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
+        <intercept-url pattern="/category/addCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
+        <intercept-url pattern="/category/updateCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
+        <intercept-url pattern="/category/deleteCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
+        <!--category模块相关权限 结束  -->  
+        <!--country模块相关权限 开始  -->
+        <intercept-url pattern="/country/countryList.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
+        <intercept-url pattern="/country/addCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
+        <intercept-url pattern="/country/updateCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
+        <intercept-url pattern="/country/deleteCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
+        <!--country模块相关权限 结束  -->
+        <intercept-url pattern="/**.jsp" access="ROLE_ADMIN,ROLE_LOGINUSER"/>
+        <intercept-url pattern="/**.action" access="ROLE_ADMIN,ROLE_LOGINUSER"/>
+     	<!-- login-page：登陆页面
+     	     login-processing-url：指定了客户在登录页面中按下 Sign In 按钮时要访问的 URL
+     	     authentication-failure-url：指定了身份验证失败时跳转到的页面。
+     	     default-target-url：指定了成功进行身份验证和授权后默认呈现给用户的页面。
+             always-use-default-target：指定了是否在身份验证通过后总是跳转到default-target-url属性指定的URL。 -->
+        <form-login login-page="/login/toLoginPage.action" 
+                    login-processing-url="/j_spring_security_check.action" 
+                    authentication-failure-url="/login/toLoginPage.action?login_error=1"
+                    default-target-url="/login/toIndexPage.action" 
+                    always-use-default-target="true"/>
+        <!-- max-sessions:允许用户帐号登录的次数。范例限制用户只能登录一次。
+             exception-if-maximum-exceeded: 默认为false，此值表示：用户第二次登录时，前一次的登录信息都被清空。
+                                                 当exception-if-maximum-exceeded="true"时系统会拒绝第二次登录。-->            
+        <concurrent-session-control max-sessions="1" exception-if-maximum-exceeded="false"/> 
+        <!-- logout-url：指定了用于响应退出系统请求的URL。其默认值为：/j_security_logout。
+        logout-success-url：退出系统后转向的URL。
+        invalidate-session：指定在退出系统时是否要销毁Session。-->
+        <logout logout-url="/j_spring_security_logout.action" logout-success-url="/login/toLoginPage.action" invalidate-session="true"/>	
+    </http>
+    <authentication-provider user-service-ref="securityService">
+        <password-encoder hash="md5"/>
+	</authentication-provider>
+</beans:beans>
