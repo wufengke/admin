@@ -202,4 +202,24 @@ public class UserServiceImpl  implements UserService{
 		}
 	}
 
+	@Override
+	public PageList getOnlineUsersPageList(PageList pageList) {
+		try {
+			return userDao.search("from Account ", null, pageList);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return pageList;
+		}
+		
+	}
+
+	@Override
+	public void updateAccount(Account account) {
+		try {
+			userDao.update(account);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+	}
+
 }

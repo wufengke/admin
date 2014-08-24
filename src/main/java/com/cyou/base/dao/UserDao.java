@@ -12,4 +12,6 @@ public interface UserDao extends BaseDao{
 	Users getUsersByUserId(String userId);
 
 	List<Users> getTeacherUsers();
+
+	Account getAccountByUserId(String userId);
 }

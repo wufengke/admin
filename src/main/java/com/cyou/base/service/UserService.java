@@ -18,6 +18,12 @@ public interface UserService{
 	 */
 	public PageList getPageList(PageList pageList);
 	/**
+	 * 查询线上注册用户列表
+	 * @param pageList
+	 * @return
+	 */
+	public PageList getOnlineUsersPageList(PageList pageList);
+	/**
 	 * 增加用户
 	 * @param user
 	 */
@@ -82,4 +88,6 @@ public interface UserService{
 	Users getUsersByUserId(String userId);
 	
 	public List<Users> getTeacherUsers();
+	
+	public void updateAccount(Account account);
 }

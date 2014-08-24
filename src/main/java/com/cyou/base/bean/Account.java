@@ -94,7 +94,6 @@ public class Account implements UserDetails {
 	 * @see org.springframework.security.userdetails.UserDetails#getPassword()
 	 */
 	public String getPassword() {
-		System.out.println("password:" + password);
 		return password;
 	}
 
@@ -103,7 +102,6 @@ public class Account implements UserDetails {
 	 */
 	
 	public String getUsername() {
-		System.out.println("username:" + username);
 		return username;
 	}
 

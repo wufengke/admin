@@ -5,17 +5,15 @@
 <head>
 <base href="<%=basePath%>"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Changyou Admin</title>
+<title>Admin</title>
 <jsp:include page="/common/JsCss.jsp" />
 </head>
 <body id="login" onload="document.f.j_username.focus();">
 <div id="login-wrapper" class="png_bg">
   <div id="login-top">
-    <h1>Simpla Admin</h1>
-    <!-- Logo (221px width) -->
+    <h1>Admin</h1>
     <a href="#"><img id="logo" src="resources/images/logo.png" alt="Simpla Admin logo" /></a> 
-    <div ><a href="/language/chooseLanguage.action?request_locale=en_US">English </a>|<a href="/language/chooseLanguage.action?request_locale=zh_CN"> 简体中文</a></div></div>
-  <!-- End #logn-top -->
+  </div>
   <div id="login-content">
     <form name="f" action="<c:url value='j_spring_security_check.action'/>" method="post" >
 	    <c:if test="${not empty param.login_error}">

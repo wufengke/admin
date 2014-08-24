@@ -27,5 +27,9 @@ public interface CourseService{
 	void saveCourseDetail(CourseDetail cd);
 
 	void deleteCourse(Course c, CourseDetail cd);
+
+	void saveOrUpdateCourseDetail(CourseDetail cd);
+
+	void updateCourseDetail(CourseDetail cd);
 	
 }

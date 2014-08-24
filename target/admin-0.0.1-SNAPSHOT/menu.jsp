@@ -4,9 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
   <div id="sidebar">
     <div id="sidebar-wrapper">
-      <h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
+      <h1 id="sidebar-title"><a href="#">Admin</a></h1>
       <a href="http://www.changyou.com"><img id="logo" src="/resources/images/logo.png" alt="Simpla Admin logo" /></a>
-      <div id="profile-links"><a href="/language/chooseLanguage.action?request_locale=en_US">English </a>|<a href="/language/chooseLanguage.action?request_locale=zh_CN"> 简体中文</a></div>
       <div id="profile-links"> <s:text name="hello"/>, <sec:authentication property='principal.username' /><br />
         <br />
         <a href="<c:url value='j_spring_security_logout.action'/>" title="<s:text name="logout"/></a>"><s:text name="logout"/></a> </div>
@@ -22,7 +21,7 @@
 		          <s:text name="authoritymanage"/> </a>
 		          <ul> 
 		          <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">  
-		          	<li><a href="/user/userList.action" name="/user/"><s:text name="usermanage"/></a></li>
+		          	<li><a href="/user/userList.action" name="/user/userList"><s:text name="usermanage"/></a></li>
 				  </sec:authorize> 
 		          <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ROLE">  
 		          	<li><a href="/role/roleList.action" name="/role/"><s:text name="rolemanage"/></a></li>
@@ -30,12 +29,30 @@
 		          </ul>
 	        </li>
 	        </sec:authorize> 
-	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_COUNTRY,ROLE_CURRENCY_RATE"> 
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_COURSE"> 
 		        <li> <a href="#" class="nav-top-item" name="#">
 			          <s:text name="coursemanage"/> </a>
 			          <ul> 
 			          	<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_COURSE"> 
 			             	<li><a href="/course/courseList.action" name="/course/"><s:text name="coursemanage"/></a></li>
+			           	</sec:authorize>
+			          </ul>
+		        </li>
+	       </sec:authorize>  
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APPLY_TEACH"> 
+		        <li> <a href="#" class="nav-top-item" name="#"><s:text name="applyTeachManage"/> </a>
+			          <ul> 
+			          	<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APPLY_TEACH"> 
+			             	<li><a href="/applyteach/applyTeachList.action" name="/applyteach/"><s:text name="applyTeachManage"/></a></li>
+			           	</sec:authorize>
+			          </ul>
+		        </li>
+	       </sec:authorize>  
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ONLINE_USERS"> 
+		        <li> <a href="#" class="nav-top-item" name="#">注册用户管理</a>
+			          <ul> 
+			          	<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ONLINE_USERS"> 
+			             	<li><a href="/user/onlineUsersList.action" name="/user/onlineUsersList">注册用户管理</a></li>
 			           	</sec:authorize>
 			          </ul>
 		        </li>

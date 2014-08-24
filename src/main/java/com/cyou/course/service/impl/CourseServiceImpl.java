@@ -109,4 +109,22 @@ public class CourseServiceImpl  implements CourseService{
 			logger.error(e.getMessage(),e);
 		}
 	}
+
+	@Override
+	public void saveOrUpdateCourseDetail(CourseDetail cd) {
+		try {
+			courseDao.saveOrUpdate(cd);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
+
+	@Override
+	public void updateCourseDetail(CourseDetail cd) {
+		try {
+			courseDao.update(cd);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
 }

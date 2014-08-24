@@ -17,6 +17,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.security.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
+import com.cyou.base.bean.Account;
 import com.cyou.base.bean.Role;
 import com.cyou.base.bean.User;
 import com.cyou.base.service.UserService;
@@ -100,6 +101,11 @@ public class UserAction extends BaseAction{
 	public String userList(){
 		Object[] objs = {conditionUsername,disabled};
 		httpServletRequest.setAttribute("pageList", userService.getPageList(this.getPagelist(),objs));
+		return SUCCESS;
+	}
+	@Action(value = "/onlineUsersList", results = { @Result(name = SUCCESS, location = "/WEB-INF/page/base/onlineUsersList.jsp") })
+	public String onlineUsersList(){
+		httpServletRequest.setAttribute("pageList", userService.getOnlineUsersPageList(this.getPagelist()));
 		return SUCCESS;
 	}
 	/**
@@ -226,7 +232,44 @@ public class UserAction extends BaseAction{
 			userList();
 		}
 	}
-	
+	@Action(value = "/resetUserAccountType", results = { 
+			@Result(name = SUCCESS, type="redirect",location = "/user/onlineUsersList.action?page=${page}"), 
+			@Result(name = INPUT, location = "/WEB-INF/page/base/onlineUsersList.jsp")
+        })
+	public String resetUserAccountType(){
+		try {
+			if(id != null){
+				Account account = userService.getAccountById(id);
+				if(account != null){
+					account.setAccountType(account.getAccountType().equals("0")? "1":"0");
+					userService.updateAccount(account);
+				}
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+	@Action(value = "/resetUserStatus", results = { 
+			@Result(name = SUCCESS, type="redirect",location = "/user/onlineUsersList.action?page=${page}"), 
+			@Result(name = INPUT, location = "/WEB-INF/page/base/onlineUsersList.jsp")
+	})
+	public String resetUserStatus(){
+		try {
+			if(id != null){
+				Account account = userService.getAccountById(id);
+				if(account != null){
+					account.setDisabled(account.isDisabled()? false:true);
+					userService.updateAccount(account);
+				}
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return INPUT;
+		}
+		return SUCCESS;
+	}
 	/**
 	 * 给用户分配权限时 跳转至用户权限列表页的方法
 	 * @return

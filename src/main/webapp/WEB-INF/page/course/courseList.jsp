@@ -7,12 +7,12 @@
 <meta http-equiv="pragma" content="no-cache" /> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
 <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
-<title>Simpla Admin</title>
-<script type="text/javascript" src="/ueditor1_4_3/ueditor.config.js"></script>
-<script type="text/javascript" src="/ueditor1_4_3/ueditor.all.min.js"> </script>
+<title>Admin</title>
+<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/ueditor/ueditor.all.js"> </script>
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8" src="/ueditor1_4_3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
  <script type="text/javascript" src="/resources/scripts/My97DatePicker/WdatePicker.js"></script> 
 <jsp:include page="/common/JsCss.jsp" />
 
@@ -107,11 +107,12 @@ function deleteConfirm() {
 		    	<c:if test="${courseList.status == 2}">
 			    		<a href='courseOperation.action?id=${courseList.id}&page=${pageList.pageNumber }&status=0'  onclick="javascript:return onlineConfirm();" ><s:text name="preonline"/></a>
 		    	</c:if>
+		    	<a href="editCourse.action?id=${courseList.id}&page=${pageList.pageNumber }"><s:text name="edit"/></a>
      		</display:column>
 		  </display:table> 
         </div>
           <div class="tab-content <s:property value="#request.tab2default" />" id="tab2">
-	          <s:form action="addCourseStep1" method="post" namespace="/course" enctype ="multipart/form-data" name="step1" id="step1">
+	          <s:form action="addCourseStep1.action" method="post" namespace="/course" enctype ="multipart/form-data" name="step1" id="step1">
 	           	<s:hidden name="courseId" value="%{courseId}"></s:hidden>
 	            <fieldset>
 	            <p>
@@ -150,7 +151,7 @@ function deleteConfirm() {
 	            </p>  
 	            <p>
 	              <label><s:text name="courseTimeDesc"/></label>
-	                <s:textfield name="courseTimeDesc" cssClass="text-input small-input" />
+	                <s:textfield name="courseTimeDesc" cssClass="text-input small-input" maxlength="32"/>
 	              <br />
 	              <small><s:text name="courseTimeDesc"/></small>
 	            </p>  
@@ -243,12 +244,6 @@ function deleteConfirm() {
 	              <br />
 	              <small><s:text name="lessionTimes"/></small> </p>
 	            <p>
-	              <label><s:text name="lessionSchedule"/></label>
-	              <s:textfield id="lessionSchedule" name="lessionSchedule" cssClass="text-input large-input"/>
-	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionSchedule" />
-	              <br />
-	              <small><s:text name="lessionScheduleDesc"/></small> </p>
-	            <p>
 	              <label><s:text name="comments"/></label>
 	              <s:textfield id="comments" name="comments" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="comments" />
@@ -256,8 +251,15 @@ function deleteConfirm() {
 	              <small><s:text name="comments"/></small> 
 	            </p>
 	            <p>
+	              <label><s:text name="lessionSchedule"/></label>
+	              <s:textarea id="lessionSchedule" name="lessionSchedule" cssClass="text-input large-input" cols="200" rows="10"/>
+	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionSchedule" />
+	              <br />
+	              <small><s:text name="lessionScheduleDesc"/></small> 
+	            </p>
+	            <p>
 	              <label><s:text name="courseDetailBrief"/></label>
-	              <s:textfield id="courseDetailBrief" name="courseDetailBrief" cssClass="text-input large-input"/>
+	              <s:textfield id="courseDetailBrief" name="courseDetailBrief" cssClass="text-input large-input" maxlength="255"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailBrief" />
 	              <br />
 	              <small><s:text name="courseDetailBrief"/></small>
@@ -265,21 +267,23 @@ function deleteConfirm() {
 	            
 	            <p>
 	              <label><s:text name="courseDetailDesc"/></label>
-	              <s:textfield id="courseDetailDesc" name="courseDetailDesc" cssClass="text-input large-input"/>
+	              <s:textfield id="courseDetailDesc" name="courseDetailDesc" cssClass="text-input large-input" maxlength="255"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailDesc" />
 	              <br />
 	              <small><s:text name="courseDetailDesc"/></small> 
 	            </p>
 	            <p>
 	              <label><s:text name="courseDetailOutline"/></label>
-	              <s:textfield id="courseDetailOutline" name="courseDetailOutline" cssClass="text-input large-input"  maxlength="512"/>
+	              <s:textarea id="courseDetailOutline" name="courseDetailOutline" cssClass="text-input large-input" cols="200" rows="10"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailOutline" />
 	              <br />
 	              <small><s:text name="courseDetailOutlineDesc"/></small> 
 	            </p>
 	            <p>
 	              <label><s:text name="courseDetailSummary"/></label>
-	              <script id="editor"  name="courseDetailSummary" type="text/plain"></script>
+	              <script id="editor"  name="courseDetailSummary" type="text/plain">
+	              	<s:property value="%{courseDetailSummary}"/>
+	              </script>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailSummary" />
 	              <br />
 	              <small><s:text name="courseDetailSummary"/></small> 
@@ -332,6 +336,9 @@ function deleteConfirm() {
 	        initialFrameWidth: 1000,
 	        initialFrameHeight: 600,
 	    });
+	    ue.ready(function(){
+			ue.setContent('<s:property value="courseDetailSummary"/>');
+		});
    </script>
     <div class="clear"></div>
     <jsp:include page="/foot.jsp" />

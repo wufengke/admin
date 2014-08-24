@@ -119,7 +119,12 @@ public class CourseAction extends BaseAction{
 			
 			if(StringUtils.isNotBlank(courseId)){
 				//
-				return viewOldCourse(courseId);
+				if("step2".equals(step)){
+					return viewOldCourse(courseId);
+				}else{
+					return updateCourseAndViewCourseDetail();
+				}
+				
 			}else {
 				return createNewCourse();
 			}
@@ -149,6 +154,20 @@ public class CourseAction extends BaseAction{
 		setStatus(course.getStatus());
 		setTotalCount(course.getTotalCount());
 		setUserId(course.getUserId());
+		setOriginalPrice(course.getOriginalPrice());
+		setPrice(course.getPrice());
+		setBigImageSideColor(course.getBigImageSideColor());
+		setCourseTimeDesc(course.getCourseTimeDesc());
+		CourseDetail courseDetail = courseService.getCourseDetailByDetailId(courseId);
+		if(courseDetail != null){
+			setLessionTimes(courseDetail.getLessionTimes());
+			setLessionSchedule(courseDetail.getLessionSchedule());
+			setComments(courseDetail.getComments());
+			setCourseDetailBrief(courseDetail.getCourseDetailBrief());
+			setCourseDetailSummary(courseDetail.getCourseDetailSummary());
+			setCourseDetailDesc(courseDetail.getCourseDetailDesc());
+			setCourseDetailOutline(courseDetail.getCourseDetailOutline());
+		}
 		return SUCCESS;
 	}
 	
@@ -262,8 +281,10 @@ public class CourseAction extends BaseAction{
 			httpServletRequest.setAttribute("tab",2);
 			httpServletRequest.setAttribute("pageList", courseService.getPageList(this.getPagelist()));
 			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
-			
-			CourseDetail cd = new CourseDetail();
+			CourseDetail cd = courseService.getCourseDetailByDetailId(courseId);
+			if(cd == null){
+				cd = new CourseDetail();
+			}
 			
 			cd.setComments(comments);
 			cd.setCourseDetailBrief(courseDetailBrief);
@@ -277,7 +298,7 @@ public class CourseAction extends BaseAction{
 			cd.setLessionSchedule(lessionSchedule);
 			cd.setLessionTimes(lessionTimes);
 			cd.setUpdateTime(d);
-			courseService.saveCourseDetail(cd);
+			courseService.saveOrUpdateCourseDetail(cd);
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			return INPUT;
@@ -305,6 +326,170 @@ public class CourseAction extends BaseAction{
 		}
 		return SUCCESS;
 	}
+	
+	private Course course;
+	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	@Action(value = "/editCourse", results = { 
+			@Result(name = SUCCESS, location = "/WEB-INF/page/course/editCourse.jsp"),
+			@Result(name = INPUT, location = "/WEB-INF/page/course/courseList.jsp")})
+	public String editCourse(){
+		try {
+			step = "step1";
+			if(this.getId() != null){
+				course = courseService.getCourseById(this.getId());
+				if(course != null){
+					httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
+					setCourseId(course.getCourseId());
+					setBigImageSideColor(course.getBigImageSideColor());
+					setCourseTitle(course.getCourseTitle());
+					setCourseBrief(course.getCourseBrief());
+					setCourseDesc(course.getCourseDesc());
+					setUserId(course.getUserId());
+					setCourseTimeDesc(course.getCourseTimeDesc());
+					setCourseTime(course.getCourseTime());
+					setTotalCount(course.getTotalCount());
+					setCount(course.getCount());
+					setLessonTimes(course.getLessonTimes());
+					setRank(course.getRank());
+					setOriginalPrice(course.getOriginalPrice());
+					setPrice(course.getPrice());
+					setIsRoll(Integer.parseInt(course.getIsRoll()));
+				}
+			}else {
+				return INPUT;
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+	
+	@Action(value = "/editCourseStep1", results = { 
+			@Result(name = SUCCESS,location = "/WEB-INF/page/course/editCourse.jsp"),
+			@Result(name = INPUT, location = "/WEB-INF/page/course/editCourse.jsp")})
+	public String editCourseStep1(){
+		try {
+			if(!"step2".equals(step)){
+				setStep("step2");
+			}else{
+				setStep("step1");
+			}
+			httpServletRequest.setAttribute("step", step);
+			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
+			
+			return updateCourseAndViewCourseDetail();
+	       
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return INPUT;
+		}
+	}
+
+	private String updateCourseAndViewCourseDetail() {
+		httpServletRequest.setAttribute("courseId", courseId);
+		Course course = courseService.getCourseByDetailId(courseId);
+		if(course != null){
+			course.setCount(count);
+			course.setCourseBrief(courseBrief);
+			course.setCourseDesc(courseDesc);
+			course.setCourseDetailId(courseId);
+			course.setCourseId(courseId);
+			course.setCourseTime(courseTime);
+			course.setCourseTitle(courseTitle);
+			Date d = new Date();
+			course.setIsRoll(isRoll.toString());
+			course.setLessonTimes(lessonTimes);
+			course.setRank(rank);
+			course.setTotalCount(totalCount);
+			course.setUpdateTime(d);
+			course.setUserId(userId);
+			course.setCourseTimeDesc(courseTimeDesc);
+			course.setOriginalPrice(originalPrice);
+			course.setPrice(price);
+			course.setBigImageSideColor(bigImageSideColor);
+			Users u = userService.getUsersByUserId(userId);
+			if(u != null){
+				course.setUserImageUrl(u.getImageUrl());
+				course.setUserRealName(u.getRealName());
+			}
+			
+			if (myFile == null)  
+	            return INPUT;  
+	        for (int i = 0; i < myFile.size(); i++) {  
+	            imageFileName.add(new Date().getTime()+ getExtention(this.getMyFileFileName().get(i))) ;  
+	            File dir = new File(PropertyUtil.getProperty("imagesLocation")+courseId +"/" + i);
+	            dir.mkdirs();
+	            File imageFile = new File(PropertyUtil.getProperty("imagesLocation")+ courseId +"/" + i +"/" + imageFileName.get(i));   
+	            copy(myFile.get(i), imageFile); 
+	        }  
+	        
+	        for (int i = 0; i < imageFileName.size(); i++) {
+	        	 String prefix = "/upload/" + courseId + "/" + i + "/";
+				if(i == 0){
+					course.setBigImageUrl(prefix + imageFileName.get(i));
+				}
+				if(i == 1){
+					course.setMediumImageUrl(prefix + imageFileName.get(i));
+				}
+				if(i == 2){
+					course.setSmallImageUrl(prefix + imageFileName.get(i));
+				}
+			}
+	        CourseDetail courseDetail = courseService.getCourseDetailByDetailId(courseId);
+			if(courseDetail != null){
+				setLessionTimes(courseDetail.getLessionTimes());
+				setLessionSchedule(courseDetail.getLessionSchedule());
+				setComments(courseDetail.getComments());
+				setCourseDetailBrief(courseDetail.getCourseDetailBrief());
+				setCourseDetailSummary(courseDetail.getCourseDetailSummary());
+				setCourseDetailDesc(courseDetail.getCourseDetailDesc());
+				setCourseDetailOutline(courseDetail.getCourseDetailOutline());
+			}
+	        courseService.updateCourse(course);
+    	
+		}
+        return SUCCESS;
+	
+	}
+	@Action(value = "/editCourseStep2", results = { 
+			@Result(name = SUCCESS,location = "/WEB-INF/page/course/editCourse.jsp"),
+			@Result(name = INPUT, location = "/WEB-INF/page/course/editCourse.jsp")})
+	public String editCourseStep2(){
+		try {
+			setStep("step3");
+			httpServletRequest.setAttribute("step", step);
+			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
+			CourseDetail cd = courseService.getCourseDetailByDetailId(courseId);
+			if(cd == null){
+				cd = new CourseDetail();
+			}
+			cd.setComments(comments);
+			cd.setCourseDetailBrief(courseDetailBrief);
+			cd.setCourseDetailDesc(courseDetailDesc);
+			cd.setCourseDetailEvaluate(courseDetailEvaluate);
+			cd.setCourseDetailId(courseId);
+			cd.setCourseDetailOutline(courseDetailOutline);
+			cd.setCourseDetailSummary(courseDetailSummary);
+			Date d = new Date();
+			cd.setCreateTime(d);
+			cd.setLessionSchedule(lessionSchedule);
+			cd.setLessionTimes(lessionTimes);
+			cd.setUpdateTime(d);
+			courseService.updateCourseDetail(cd);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

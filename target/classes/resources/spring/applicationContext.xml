@@ -28,9 +28,10 @@
 			</list>
 		</property>
 	</bean>
-	<!--MemCache 缓存 START-->
+	<!--MemCache 缓存 START
 	<bean id="memCache" class="com.cyou.base.util.MemcacheCacheManager" init-method="init" destroy-method="destory">
 	</bean>
+	-->
 	<!-- 加载其他spring配置文件 -->
 	<!-- 持久化配置管理 -->
 	<import resource="applicationContext-persistence-admin.xml" />

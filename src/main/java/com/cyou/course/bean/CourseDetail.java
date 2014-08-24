@@ -40,7 +40,7 @@ public class CourseDetail implements Serializable {
 	private String courseDetailBrief;
 	@Column(name="COURSE_DETAIL_DESC",length=255)
 	private String courseDetailDesc;
-	@Column(name="COURSE_DETAIL_OUTLINE",length=512)
+	@Column(name="COURSE_DETAIL_OUTLINE")
 	private String courseDetailOutline;
 	@Column(name="COURSE_DETAIL_SUMMARY")
 	private String courseDetailSummary;

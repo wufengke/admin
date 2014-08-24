@@ -52,5 +52,17 @@ public class UserDaoImpl extends BaseCyouPayDaoImpl implements UserDao{
 		});
 	}
 
+	@Override
+	public Account getAccountByUserId(final String userId) {
+		return (Account) getHibernateTemplate().execute(new HibernateCallback() {
+			
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				return session.createQuery("from Account a where a.userId='" + userId+"'").uniqueResult();
+			}
+		});
+	}
+
 	
 }
