@@ -11,12 +11,6 @@
    		<intercept-url pattern="/login/toLoginPage.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
    		<intercept-url pattern="/password/changePassword.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
    		<intercept-url pattern="/password/toChangePasswordPage.action" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <!--application模块相关权限 开始  -->
-        <intercept-url pattern="/application/applicationList.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
-        <intercept-url pattern="/application/addApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
-        <intercept-url pattern="/application/updateApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
-        <intercept-url pattern="/application/deleteApplication.action" access="ROLE_ADMIN,ROLE_APPLICATION"/>
-        <!--application模块相关权限 结束  -->
         <!--User模块相关权限 开始  -->
         <intercept-url pattern="/user/userList.action" access="ROLE_ADMIN,ROLE_USER"/>
         <intercept-url pattern="/user/addUser.action" access="ROLE_ADMIN,ROLE_USER"/>
@@ -29,18 +23,30 @@
         <intercept-url pattern="/role/roleList.action" access="ROLE_ADMIN,ROLE_ROLE"/>
         <intercept-url pattern="/role/addRole.action" access="ROLE_ADMIN,ROLE_ROLE"/>
         <intercept-url pattern="/role/updateRole.action" access="ROLE_ADMIN,ROLE_ROLE"/>
-        <!--category模块相关权限 开始  -->  
-        <intercept-url pattern="/category/categoryList.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
-        <intercept-url pattern="/category/addCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
-        <intercept-url pattern="/category/updateCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
-        <intercept-url pattern="/category/deleteCategory.action" access="ROLE_ADMIN,ROLE_CATEGORY"/>
-        <!--category模块相关权限 结束  -->  
-        <!--country模块相关权限 开始  -->
-        <intercept-url pattern="/country/countryList.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
-        <intercept-url pattern="/country/addCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
-        <intercept-url pattern="/country/updateCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
-        <intercept-url pattern="/country/deleteCountry.action" access="ROLE_ADMIN,ROLE_COUNTRY"/> 
-        <!--country模块相关权限 结束  -->
+        
+        <!--course模块相关权限 开始  -->  
+        <intercept-url pattern="/course/courseList.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/deleteCourse.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/viewAddCourseStep1.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/addCourseStep1.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/addCourseStep2.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/courseOperation.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/editCourse.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/editCourseStep1.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <intercept-url pattern="/course/editCourseStep2.action" access="ROLE_ADMIN,ROLE_COURSE"/>
+        <!--course模块相关权限 结束  -->  
+        <!--applyTeach模块相关权限 开始  -->  
+        <intercept-url pattern="/applyteach/applyTeachList.action" access="ROLE_ADMIN,ROLE_APPLY_TEACH"/>
+        <intercept-url pattern="/applyteach/resetApplyTeachStatus.action" access="ROLE_ADMIN,ROLE_APPLY_TEACH"/>
+        <intercept-url pattern="/applyteach/lookApplyTeachDetail.action" access="ROLE_ADMIN,ROLE_APPLY_TEACH"/>
+        <intercept-url pattern="/applyteach/updateApplyTeach.action" access="ROLE_ADMIN,ROLE_APPLY_TEACH"/>
+        <!--applyTeach模块相关权限 结束  -->  
+        <!--注册用户模块相关权限 开始  -->  
+        <intercept-url pattern="/user/onlineUsersList.action" access="ROLE_ADMIN,ROLE_ONLINE_USERS"/>
+        <intercept-url pattern="/user/resetUserAccountType.action" access="ROLE_ADMIN,ROLE_ONLINE_USERS"/>
+        <intercept-url pattern="/user/resetUserStatus.action" access="ROLE_ADMIN,ROLE_ONLINE_USERS"/>
+        <!--注册用户模块相关权限 结束  -->  
+        
         <intercept-url pattern="/**.jsp" access="ROLE_ADMIN,ROLE_LOGINUSER"/>
         <intercept-url pattern="/**.action" access="ROLE_ADMIN,ROLE_LOGINUSER"/>
      	<!-- login-page：登陆页面

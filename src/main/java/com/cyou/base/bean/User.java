@@ -18,11 +18,6 @@ import javax.persistence.Table;
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.GrantedAuthorityImpl;
 import org.springframework.security.userdetails.UserDetails;
-/**
- * 用户实体类
- * @author liuyang_js
- *
- */
 @Entity
 @Table(name="ADMIN_USER")
 public class User implements UserDetails {

@@ -311,8 +311,9 @@ public class UserAction extends BaseAction{
 	 * 给用户分配权限的方法
 	 * @return
 	 */
-	@Action(value = "/addUserRole", results = { @Result(name = SUCCESS, location = "/WEB-INF/page/base/userRole.jsp"), 
-			   @Result(name = INPUT, location = "/WEB-INF/page/base/userRole.jsp")
+	@Action(value = "/addUserRole", results = { 
+			@Result(name = SUCCESS, type="redirect",location = "/user/userRole.action?id=${userid}"), 
+			@Result(name = INPUT, location = "/WEB-INF/page/base/userRole.jsp")
 	})
 	public String addUserRole(){
 		User user = userService.getUser(this.getUserid());

@@ -1,30 +1,18 @@
 package com.cyou.base.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.GrantedAuthorityImpl;
-import org.springframework.security.userdetails.UserDetails;
 /**
  * 用户实体类
  *
  */
 @Entity
 @Table(name="ACCOUNT")
-public class Account implements UserDetails {
+public class Account {
 	
 	private static final long serialVersionUID = 8026813053768023527L;
 	//自增id
@@ -67,28 +55,10 @@ public class Account implements UserDetails {
 	@Column(name="APPLY_STATUS")
 	private String applyStatus;
 	
-	//用户所拥有的角色列表 对应Role类的Set集合
-	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-	private Set<Role> roles;
-	
-	
 	/**
 	 * 无参数构造
 	 */
 	public Account() {}
-
-	
-	/* (non-Javadoc)
-	 * @see org.springframework.security.userdetails.UserDetails#getAuthorities()
-	 */
-	public GrantedAuthority[] getAuthorities() {
-		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>(getRoles().size());
-    	for(Role role : getRoles()) {
-    		grantedAuthorities.add(new GrantedAuthorityImpl(role.getName()));
-    	}
-        return grantedAuthorities.toArray(new GrantedAuthority[roles.size()]);
-	}
 
 	/* (non-Javadoc)
 	 * @see org.springframework.security.userdetails.UserDetails#getPassword()
@@ -147,19 +117,6 @@ public class Account implements UserDetails {
 
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
-	}
-
-	public Set<Role> getRoles() {
-		Role role = new Role();
-		role.setId(0);
-		role.setName("ROLE_LOGINUSER");
-		role.setDescription("用户初始化的最低登陆权限，不能取消掉");
-		roles.add(role);
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
 	}
 
 	public void setPassword(String password) {

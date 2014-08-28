@@ -15,11 +15,11 @@
 		         	主页
 		         	</a> 
 	        </li>
-	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ROLE,ROLE_ROLE">  
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_ROLE">  
 	        <li> <a href="#" class="nav-top-item" name="#">权限管理 </a>
 		          <ul> 
 		          <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">  
-		          	<li><a href="/user/userList.action" name="/user/userList">用户管理</a></li>
+		          	<li><a href="/user/userList.action" name="/user/user">用户管理</a></li>
 				  </sec:authorize> 
 		          <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ROLE">  
 		          	<li><a href="/role/roleList.action" name="/role/">角色管理</a></li>
