@@ -9,19 +9,19 @@
 <meta http-equiv="pragma" content="no-cache" /> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
 <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
-<title>Simpla Admin</title>
+<title>Admin</title>
 <jsp:include page="/common/JsCss.jsp" />
 </head>
 <body>
 <div id="body-wrapper">
   <jsp:include page="menu.jsp"></jsp:include>
   <div id="main-content">
-    <h2><s:text name="homepage"/></h2>
+    <h2>主页</h2>
     <p id="page-intro">
      <c:if test="${empty havefielderror}">
       <c:if test="${not empty flushSuccess}">
        <div class="notification success png_bg"> <a href="#" class="close"><img src="/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-         <div><s:text name="flushsuccess"/></div>
+         <div>刷新成功</div>
        </div>
       </c:if>
      </c:if>

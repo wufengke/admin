@@ -13,9 +13,9 @@
 function delConfirm(isDisabled) {
 	var delFlag = false;
 	if(isDisabled) {
-		delFlag = confirm("<s:text name='user_enabledconfirm'/>");
+		delFlag = confirm("确定将该用户置为正常状态吗？");
 	} else {
-		delFlag = confirm("<s:text name='user_disabledconfirm'/>");
+		delFlag = confirm("确定禁止该用户吗？");
 	}
 	return delFlag;
 }
@@ -35,7 +35,7 @@ function delConfirm(isDisabled) {
     <div class="content-box">
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="list"/></a></li>
+          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />">列表</a></li>
         </ul>
         <div class="clear"></div>
       </div>

@@ -1,5 +1,6 @@
 package com.cyou.core.action;
 
+import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -57,6 +58,7 @@ public class BaseAction extends ActionSupport implements ServletContextAware,
 
     @Override
     public void setServletContext(ServletContext context) {
+    	URLDecoder.decode("");
 	this.servletContext = context;
     }
     

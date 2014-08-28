@@ -20,19 +20,19 @@
 <body>
 <script type="text/javascript">
 function offlineConfirm() {
-	return confirm("<s:text name='offlineConfirm'/>");
+	return confirm("确定下线吗？");
 }
 function onlineConfirm() {
-	return confirm("<s:text name='onlineConfirm'/>");
+	return confirm("确定上线吗？");
 }
 function preonlineConfirm() {
-	return confirm("<s:text name='preonlineConfirm'/>");
+	return confirm("确定要置为预上线吗？");
 }
 function preConfirm() {
-	return confirm("<s:text name='preConfirm'/>");
+	return confirm("确定返回上一步吗？");
 }
 function deleteConfirm() {
-	return confirm("<s:text name='deleteConfirm'/>");
+	return confirm("确定删除吗？");
 }
 </script>
 <!--根据参数设置tab1和tab2的样式  -->
@@ -42,13 +42,13 @@ function deleteConfirm() {
 <div id="body-wrapper">
   <jsp:include page="/menu.jsp" />
   <div id="main-content">
-    <h2><s:text name="coursemanage"/> --> <s:text name="coursemanage"/></h2>
+      <h2>课程管理 --> 课程编辑</h2>
     <p id="page-intro"></p>
     <div class="clear"></div>
     <div class="content-box">
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="edit"/></a></li>
+          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />">编辑</a></li>
         </ul>
         <div class="clear"></div>
       </div>
@@ -59,119 +59,118 @@ function deleteConfirm() {
 	           	<s:hidden name="courseId" value="%{courseId}"></s:hidden>
 	            <fieldset>
 	            <p>
-	              <label><s:text name="courseTitle"/></label>
+	               <label>课程标题</label>
 	              <s:textfield id="courseTitle" name="courseTitle" cssClass="text-input large-input" maxlength="255" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseTitle" />
 	              <br />
-	              <small><s:text name="courseTitleDesc"/></small> </p>
+	              <small>课程标题</small> </p>
 	            <p>
-	              <label><s:text name="courseBrief"/></label>
+	              <label>课程简介</label>
 	              <s:textfield id="courseBrief" name="courseBrief" cssClass="text-input large-input"  maxlength="128" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseBrief" />
 	              <br />
-	              <small><s:text name="courseBriefDesc"/></small> </p>
+	              <small>课程简介</small> </p>
 	            <p>
-	              <label><s:text name="courseDesc"/></label>
+	              <label>课程描述</label>
 	              <s:textfield id="courseDesc" name="courseDesc" cssClass="text-input medium-input"  maxlength="32" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDesc" />
 	              <br />
-	              <small><s:text name="courseDesc"/></small> 
+	              <small>适合的年级（例如：适合三-六年级学生）</small>
 	            </p>
 	            <p>
-	              <label><s:text name="teacherName"/></label>
+	              <label>所属老师</label>
 	              <s:select list="#request.teacherList" headerKey=" " headerValue="%{choose}" listValue="realName" listKey="userId" name="userId" id="userId" cssClass="text-input small-input">
 	              </s:select>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="userId" />
 	              <br />
-	              <small><s:text name="teacherName"/></small> 
+	              <small>所属老师</small> 
 	            </p>
 	            
 	            <p>
-	              <label><s:text name="courseTime"/></label>
+	              <label>开课时间</label>
 	                <s:textfield name="courseTime" cssClass="text-input small-input"  readonly="true" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2008-03-08 11:30:00',maxDate:'2100-03-10 20:59:30'})" />
 	              <br />
-	              <small><s:text name="courseTime"/></small>
+	               <small>开课时间一期的开课时间</small>
 	            </p>  
 	            <p>
-	              <label><s:text name="courseTimeDesc"/></label>
+	              <label>开课时间描述</label>
 	                <s:textfield name="courseTimeDesc" cssClass="text-input small-input" />
 	              <br />
-	              <small><s:text name="courseTimeDesc"/></small>
+	               <small>用户在首页显示课程时间（例如：8月15日）</small>
 	            </p>  
 	            
 	            <p>
-	              <label><s:text name="totalCount"/></label>
+	              <label>课程总人数</label>
 	              <s:textfield id="totalCount" name="totalCount" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="totalCount" />
 	              <br />
-	              <small><s:text name="totalCount"/></small> 
+	             <small>课程总人数</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="count"/></label>
+	              <label>已报名人数</label>
 	              <s:textfield id="count" name="count" cssClass="text-input small-input"  maxlength="32"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="count" />
 	              <br />
-	              <small><s:text name="count"/></small> 
+	             <small>已报名人数</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="lessonTimes"/></label>
+	               <label>课次</label>
 	              <s:textfield id="lessonTimes" name="lessonTimes" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessonTimes" />
 	              <br />
-	              <small><s:text name="lessonTimes"/></small> 
+	              <small>课次</small>
 	            </p>
 	            <p>
-	              <label><s:text name="rank"/></label>
+	               <label>排序</label>
 	              <s:textfield id="rank" name="rank" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="rank" />
 	              <br />
-	              <small><s:text name="rankDesc"/></small> 
+	               <small>课程在首页的排序位置（数字，如：1,2,3....）</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="originalPrice"/></label>
+	              <label>课程原价</label>
 	              <s:textfield id="originalPrice" name="originalPrice" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="originalPrice" />
 	              <br />
-	              <small><s:text name="originalPrice"/></small> 
+	              <small>课程原价</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="price"/></label>
+	              <label>课程现价</label>
 	              <s:textfield id="price" name="price" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="price" />
 	              <br />
-	              <small><s:text name="price"/></small> 
+	               <small>课程现价</small>
 	            </p>
 	            <p>
-	              <label><s:text name="isRoll"/></label>
+	              <label>是否参与首页轮播</label>
 	              <s:select list="@com.cyou.common.util.IsRoll@values()" listValue="statusDesc" listKey="ordinal()" name="isRoll" id="isRoll" value="%{isRoll}" cssClass="text-input small-input">
 	              </s:select>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="isRoll" />
 	              <br />
-	              <small><s:text name="isRoll"/></small>
+	              <small>是否参与首页轮播</small>
 	            </p>           
 	            <p>
-	              <label><s:text name="images"/></label>
 	              
 	              <s:fielderror />  
   
-                  <s:file name ="myFile" label ="大图（216）"/>  
+                   <label>首页的轮播图</label><s:file name ="myFile" label ="大图（216）"/>  
   
-                  <s:file name ="myFile" label ="中图（172）"/>  
+                  <label>中图（首页的课程图）</label><s:file name ="myFile" label ="中图（172）"/>  
   
-                  <s:file name ="myFile" label ="小图（50）"/>  
+                  <label>小图（订单里的图）</label><s:file name ="myFile" label ="小图（50）"/>  
                   
 	              <br />
-	              <small><s:text name="images"/></small>
+	               <small>图片</small>
 	            </p> 
 	            <p>
-	              <label><s:text name="bigImageSideColor"/></label>
+	              <label>轮播图两边的颜色</label>
 	              <s:textfield id="bigImageSideColor" name="bigImageSideColor" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="bigImageSideColor" />
 	              <br />
-	              <small><s:text name="bigImageSideColor"/></small> 
+	              <small>首页轮播图不是全部左右铺满屏幕的，两边需要填充颜色代码（如：#ffffff代表白色）</small> 
 	            </p>          
 	            <p>
-	              <input class="button" type="submit" value="<s:text name="next"/>" />
+	              <input class="button" type="submit" value="下一步" />
 	            </p>
 	            </fieldset>
 	            <div class="clear"></div>
@@ -181,57 +180,58 @@ function deleteConfirm() {
 	            <s:hidden name="courseId" value="%{courseId}"></s:hidden>
 	            <fieldset>
 	            <p>
-	              <label><s:text name="lessionTimes"/></label>
+	              <label>课时</label>
 	              <s:textfield id="lessionTimes" name="lessionTimes" cssClass="text-input small-input" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionTimes" />
 	              <br />
-	              <small><s:text name="lessionTimes"/></small> </p>
+	              <small>课时</small> </p>
 	            <p>
-	              <label><s:text name="comments"/></label>
+	              <label>评论数</label>
 	              <s:textfield id="comments" name="comments" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="comments" />
 	              <br />
-	              <small><s:text name="comments"/></small> 
+	              <small>评论数（整数，如1,2,3...）</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="lessionSchedule"/></label>
+	              <label>课程时间表</label>
 	              <s:textarea id="lessionSchedule" name="lessionSchedule" cssClass="text-input large-input" cols="200" rows="10"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionSchedule" />
 	              <br />
-	              <small><s:text name="lessionScheduleDesc"/></small> </p>
+	              <small>课程时间表（JSON格式的时间表，如：）</small>
+	              </p>
 	            <p>
-	              <label><s:text name="courseDetailBrief"/></label>
+	              <label>课程简介</label>
 	              <s:textfield id="courseDetailBrief" name="courseDetailBrief" cssClass="text-input large-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailBrief" />
 	              <br />
-	              <small><s:text name="courseDetailBrief"/></small>
+	               <small>课程详情页简介</small>
 	            </p>  
 	            
 	            <p>
-	              <label><s:text name="courseDetailDesc"/></label>
+	              <label>适合学生</label>
 	              <s:textfield id="courseDetailDesc" name="courseDetailDesc" cssClass="text-input large-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailDesc" />
 	              <br />
-	              <small><s:text name="courseDetailDesc"/></small> 
+	              <small>适合学生</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="courseDetailOutline"/></label>
+	              <label>课程大纲</label>
 	              <s:textarea id="courseDetailOutline" name="courseDetailOutline" cssClass="text-input large-input" cols="200" rows="10"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailOutline" />
 	              <br />
-	              <small><s:text name="courseDetailOutlineDesc"/></small> 
+	              <small>课程大纲</small> 
 	            </p>
 	            <p>
-	              <label><s:text name="courseDetailSummary"/></label>
+	              <label>课程摘要</label>
 	              <script id="editor"  name="courseDetailSummary" type="text/plain"></script>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailSummary" />
 	              <br />
-	              <small><s:text name="courseDetailSummary"/></small> 
+	              <small>课程摘要</small> 
 	            </p>
 	            <p>
-	             <a href='editCourseStep1.action?courseId=${requestScope.courseId}&step=step2'  onclick="javascript:return preConfirm()" ><s:text name="pre"/></a>
+	             <a href='editCourse.action?courseId=${requestScope.courseId}'  onclick="javascript:return preConfirm()" ><s:text name="pre"/></a>
 	             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	              <input class="button" type="submit" value="<s:text name="next"/>" />
+	              <input class="button" type="submit" value="下一步" />
 	            </p>
 	            </fieldset>
 	            <div class="clear"></div>

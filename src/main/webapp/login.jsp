@@ -18,24 +18,24 @@
     <form name="f" action="<c:url value='j_spring_security_check.action'/>" method="post" >
 	    <c:if test="${not empty param.login_error}">
 	      <div id="errormessage" class="notification error png_bg">
-	        <div> <s:text name="wrong"/> </div>
+	        <div>用户名或者密码错误 </div>
 	      </div>
 	    </c:if>
       
       <p>
-        <label><s:text name="username"/>：</label>
+        <label>用户名：</label>
         <input class="text-input" type="text" name='j_username'/>
       </p>
       <div class="clear"></div>
       <p>
-        <label><s:text name="password"/>：</label>
+        <label>密 码：</label>
         <input class="text-input" type="password" name='j_password' />
       </p>
       <div class="clear"></div>
       <div class="clear"></div>
       <p>
-      	<input class="button" type="submit" value="<s:text name="login"/>" />
-      	<input onclick="javascript:window.location.href='${basePath }password/toChangePasswordPage.action'" class="button" type="button" value="<s:text name="updatePassword"/>" style="margin-right:10px;margin-left:10px"/>
+      	<input class="button" type="submit" value="登录" />
+      	<input onclick="javascript:window.location.href='${basePath }password/toChangePasswordPage.action'" class="button" type="button" value="修改密码" style="margin-right:10px;margin-left:10px"/>
       </p>
     </form>
   </div>

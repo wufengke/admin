@@ -7,7 +7,7 @@
 <meta http-equiv="pragma" content="no-cache" /> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
 <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
-<title>Simpla Admin</title>
+<title>Admin</title>
 <jsp:include page="/common/JsCss.jsp" />
 </head>
 <body>
@@ -22,21 +22,15 @@
 <div id="body-wrapper">
   <jsp:include page="/menu.jsp" />
   <div id="main-content">
-    <noscript>
-    <div class="notification error png_bg">
-      <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface properly.
-        Download From <a href="http://www.exet.tk">exet.tk</a></div>
-    </div>
-    </noscript>
-    <h2><s:text name="authoritymanage"/> --> <s:text name="rolemanage"/></h2>
+    <h2>权限管理 --> 角色管理</h2>
     <p id="page-intro"></p>
     <div class="clear"></div>
     <div class="content-box">
       <!-- Start Content Box -->
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          <li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="list"/></a></li>
-          <li><a href="#tab2" class="<s:property value="#request.tab2default" />"><s:text name="add"/></a></li>
+          <li><a href="#tab1" class="<s:property value="#request.tab1default" />">列表</a></li>
+          <li><a href="#tab2" class="<s:property value="#request.tab2default" />">添加</a></li>
         </ul>
         <div class="clear"></div>
       </div>
@@ -56,8 +50,8 @@
 		    <display:column property="name" titleKey="Language#role_name"   /> 
 		    <display:column property="description" titleKey="Language#role_description"  />    
 		    <display:column titleKey="Language#operate" media="html" >
-     			<a href="#update${roleList.id}" rel="modal"  ><s:text name="update"/></a>
-     			<a href="/role/deleteRole.action?id=${roleList.id}" onclick="return delconfirm();"><s:text name="delete"/></a>
+     			<a href="#update${roleList.id}" rel="modal"  >更新</a>
+     			<a href="/role/deleteRole.action?id=${roleList.id}" onclick="return delconfirm();">删除</a>
      		</display:column>
 		  </display:table> 
         </div>
@@ -65,20 +59,20 @@
           <s:form action="addRole" method="post" namespace="/role">
             <fieldset>
             <p>
-              <label><s:text name="role_name"/></label>
+              <label>角色名</label>
               <s:textfield id="addname" name="addname" cssClass="text-input small-input"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addname" />
               <br />
-              <small><s:text name="role_name"/></small> </p>
+              <small>角色名</small> </p>
         
             <p>
-              <label><s:text name="role_description"/></label>
+              <label>角色描述</label>
               <s:textfield id="adddescription" name="adddescription" cssClass="text-input small-input"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="adddescription" />
               <br />
-              <small><s:text name="role_description"/></small> </p>
+              <small>角色描述</small> </p>
             <p>
-              <input class="button" type="submit" value="<s:text name="add"/>" />
+              <input class="button" type="submit" value="添加" />
             </p>
             </fieldset>
             <div class="clear"></div>
@@ -97,18 +91,18 @@
 	    <input type="hidden" id="page" name="page" value="${pageList.pageNumber }"/>
 	    <input type="hidden" id="id" name="id" value="<s:property value='id'/>"/>
             <p>
-              <label><s:text name="role_name"/></label>
+              <label>角色名</label>
                <s:textfield maxLength="200" cssClass="text-input medium-input datepicker" id="name" name="name" readonly="true"/>
               <br />
-               <small><s:text name="role_namedesc"/></small> </p>
+               <small>角色名</small> </p>
             <p>
-              <label><s:text name="role_description"/></label>
+              <label>角色描述</label>
               <s:textfield maxLength="200" cssClass="text-input medium-input datepicker" id="description" name="description" />
               <br />
-              <small><s:text name="role_description"/></small> </p>
+              <small>角色描述</small> </p>
 	    </fieldset>
 	    <fieldset>
-	    <input class="button" type="submit" value="<s:text name="update"/>" />
+	    <input class="button" type="submit" value="更新" />
 	    </fieldset>
 	  </s:form>
 	</div>
@@ -116,7 +110,7 @@
 </div>
 <script type="text/javascript">
 	function delconfirm(){
-		return confirm("<s:text name='role_deleteconfirm'/>");
+		return confirm("确定删除该角色吗？");
 	}
 </script>
 </body>

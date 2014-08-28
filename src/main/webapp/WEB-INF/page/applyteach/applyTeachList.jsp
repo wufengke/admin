@@ -20,13 +20,13 @@
 <div id="body-wrapper">
   <jsp:include page="/menu.jsp" />
   <div id="main-content">
-    <h2><s:text name="applyTeachManage"/> --> <s:text name="applyTeachManage"/></h2>
+    <h2>开课申请管理 --> 开课申请列表</h2>
     <p id="page-intro"></p>
     <div class="clear"></div>
     <div class="content-box">
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="list"/></a></li>
+          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />">列表</a></li>
         </ul>
         <div class="clear"></div>
       </div>
@@ -50,29 +50,29 @@
 		    <display:column property="phone" titleKey="Language#phone"/> 
 			<display:column titleKey="Language#status"  > 
 			    <c:if test="${applyTeach.status==0}">
-			    	<s:text name="pending"></s:text>
+			    	待审
 			    </c:if>
 			    <c:if test="${applyTeach.status==1}">
-			    	<s:text name="aprove"></s:text>
+			    	通过
 			    </c:if>
 			    <c:if test="${applyTeach.status==-1}">
-			    	<s:text name="reject"></s:text>
+			    	拒绝
 			    </c:if>
 		    </display:column>
 		    <display:column titleKey="Language#operate" media="html" >
-     			<a href="lookApplyTeachDetail?id=${applyTeach.id}&page=${pageList.pageNumber }"><s:text name="lookDetail"/></a>
+     			<a href="lookApplyTeachDetail?id=${applyTeach.id}&page=${pageList.pageNumber }">查看详情</a>
      			<c:if test="${applyTeach.status==0}">
-		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=-1"><s:text name="reject"/></a>
-		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=1"><s:text name="aprove"/></a>
+		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=-1">拒绝</a>
+		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=1">通过</a>
 			    </c:if>
 			    <c:if test="${applyTeach.status==1}">
-			    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=-1"><s:text name="reject"/></a>
-		    		<a href="resetApplyTeach.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=0"><s:text name="pending"/></a>
+			    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=-1">拒绝</a>
+		    		<a href="resetApplyTeach.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=0">待审</a>
 			    
 			    </c:if>
 			    <c:if test="${applyTeach.status==-1}">
-			   	<a href="resetApplyTeachStatus?id=${applyTeach.id}&page=${pageList.pageNumber }&status=0"><s:text name="pending"/></a>
-		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=1"><s:text name="aprove"/></a>
+			   	<a href="resetApplyTeachStatus?id=${applyTeach.id}&page=${pageList.pageNumber }&status=0">待审</a>
+		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=1">通过</a>
 			    
 			    </c:if>
      		</display:column>
@@ -87,7 +87,7 @@
 </div>
 <script type="text/javascript">
 function delConfirm() {
-	 if (!confirm("<s:text name='category_deleteconfirm'/>")) {
+	 if (!confirm("确定删除吗？")) {
             window.event.returnValue = false;
         }
 }

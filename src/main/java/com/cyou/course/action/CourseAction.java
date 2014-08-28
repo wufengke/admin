@@ -84,7 +84,7 @@ public class CourseAction extends BaseAction{
 	}
 	@Action(value = "/deleteCourse", results = { 
 			@Result(name = SUCCESS, type="redirect",location = "/course/courseList.action?page=${page}")})
-			public String deleteCourse(){
+	public String deleteCourse(){
 		try {
 			if(this.getId() != null){
 				Course c = courseService.getCourseById(id);
@@ -102,29 +102,39 @@ public class CourseAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	@Action(value = "/viewAddCourseStep1", results = { 
+			@Result(name = SUCCESS, location = "/WEB-INF/page/course/courseList.jsp")})
+	public String viewAddCourseStep1(){
+		try {
+			httpServletRequest.setAttribute("pageList", courseService.getPageList(this.getPagelist()));
+			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
+			httpServletRequest.setAttribute("step", step);
+			httpServletRequest.setAttribute("tab",2);
+			if(StringUtils.isNotBlank(courseId)){
+				return viewOldCourse(courseId);
+			}else {
+				return SUCCESS;
+			}
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return SUCCESS;
+		}
+	}
+	
 	@Action(value = "/addCourseStep1", results = { 
 			@Result(name = SUCCESS,location = "/WEB-INF/page/course/courseList.jsp"),
 			@Result(name = INPUT, location = "/WEB-INF/page/course/courseList.jsp")})
 	public String addCourseStep1(){
 		try {
-			if(!"step2".equals(step)){
-				setStep("step2");
-			}else{
-				setStep("step1");
-			}
+			setStep("step2");
 			httpServletRequest.setAttribute("step", step);
 			httpServletRequest.setAttribute("tab",2);
 			httpServletRequest.setAttribute("pageList", courseService.getPageList(this.getPagelist()));
 			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
 			
 			if(StringUtils.isNotBlank(courseId)){
-				//
-				if("step2".equals(step)){
-					return viewOldCourse(courseId);
-				}else{
-					return updateCourseAndViewCourseDetail();
-				}
-				
+				return updateCourseAndViewCourseDetail();
 			}else {
 				return createNewCourse();
 			}
@@ -341,8 +351,8 @@ public class CourseAction extends BaseAction{
 	public String editCourse(){
 		try {
 			step = "step1";
-			if(this.getId() != null){
-				course = courseService.getCourseById(this.getId());
+			if(StringUtils.isNotBlank(courseId)){
+				course = courseService.getCourseByDetailId(courseId);
 				if(course != null){
 					httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
 					setCourseId(course.getCourseId());
@@ -376,14 +386,9 @@ public class CourseAction extends BaseAction{
 			@Result(name = INPUT, location = "/WEB-INF/page/course/editCourse.jsp")})
 	public String editCourseStep1(){
 		try {
-			if(!"step2".equals(step)){
-				setStep("step2");
-			}else{
-				setStep("step1");
-			}
+			setStep("step2");
 			httpServletRequest.setAttribute("step", step);
 			httpServletRequest.setAttribute("teacherList", userService.getTeacherUsers());
-			
 			return updateCourseAndViewCourseDetail();
 	       
 		} catch (Exception e) {

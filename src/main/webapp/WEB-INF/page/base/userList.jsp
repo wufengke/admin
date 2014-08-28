@@ -7,15 +7,15 @@
 <meta http-equiv="pragma" content="no-cache" /> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
 <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
-<title>Simpla Admin</title>
+<title>Admin</title>
 <jsp:include page="/common/JsCss.jsp" />
 <script type="text/javascript">
 function delConfirm(isDisabled) {
 	var delFlag = false;
 	if(isDisabled) {
-		delFlag = confirm("<s:text name='user_enabledconfirm'/>");
+		delFlag = confirm("确定开启用户吗？");
 	} else {
-		delFlag = confirm("<s:text name='user_disabledconfirm'/>");
+		delFlag = confirm("确定关闭该用户吗？");
 	}
 	return delFlag;
 }
@@ -34,14 +34,14 @@ function delConfirm(isDisabled) {
 <div id="body-wrapper">
   <jsp:include page="/menu.jsp" />
   <div id="main-content">
-    <h2><s:text name="authoritymanage"/> --> <s:text name="usermanage"/></h2>
+    <h2>权限管理 --> 用户管理</h2>
     <p id="page-intro"></p>
     <div class="clear"></div>
     <div class="content-box">
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="list"/></a></li>
-            <li><a href="#tab2" class="<s:property value="#request.tab2default" />"><s:text name="add"/></a></li>
+          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />">列表</a></li>
+            <li><a href="#tab2" class="<s:property value="#request.tab2default" />">添加</a></li>
         </ul>
         <div class="clear"></div>
       </div>
@@ -54,11 +54,10 @@ function delConfirm(isDisabled) {
 	          </div>
 	         </c:if>
           </c:if>
-          <s:text name="whole" id="whole"/>
 		  <s:form id="conditionform" name="conditionform" action="userList" method="post">
          	<s:text name="username"/>:<s:textfield id="conditionUsername" name="conditionUsername" cssClass="text-input" ></s:textfield>
          	<s:text name="status"/>:<s:select list="@com.cyou.common.util.Status@values()" headerKey="-1" headerValue="%{whole}" listValue="statusDesc" listKey="ordinal()" name="disabled" id="disabled" cssClass="text-input small-input"> </s:select>
-         	<input class="button" type="submit" value="<s:text name="querybutton"/>" />
+         	<input class="button" type="submit" value="查询" />
           </s:form>
           <display:table id="userList" name="pageList" requestURI="userList.action"    
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
@@ -70,13 +69,13 @@ function delConfirm(isDisabled) {
 		    <display:column property="tel" titleKey="Language#tel"  sortable="false"/> 
 		    <display:column property="description" titleKey="Language#userdescription"  />   
 		    <display:column titleKey="Language#userdisabled">
-			    <c:if test="${userList.disabled == true}"><s:text name="yes"/></c:if>
-			    <c:if test="${userList.disabled == false}"><s:text name="no"/></c:if>
+			    <c:if test="${userList.disabled == true}">是</c:if>
+			    <c:if test="${userList.disabled == false}">否</c:if>
 		    </display:column>   
 		    <display:column titleKey="Language#operate" media="html" >
-     			<a href="#update${userList.id}" rel="modal"  ><s:text name="update"/></a>
-     			<a href='deleteUser.action?id=${userList.id}&page=${pageList.pageNumber }'  onclick="javascript:return delConfirm(${userList.disabled});"><s:text name="useraccountstatus"/></a>
-     			<a href='userRole.action?id=${userList.id}&page=${pageList.pageNumber }' ><s:text name="userrole"/></a>
+     			<a href="#update${userList.id}" rel="modal"  >更新</a>
+     			<a href='deleteUser.action?id=${userList.id}&page=${pageList.pageNumber }'  onclick="javascript:return delConfirm(${userList.disabled});">启停权</a>
+     			<a href='userRole.action?id=${userList.id}&page=${pageList.pageNumber }' >用户角色</a>
      		</display:column>
 		  </display:table> 
         </div>
@@ -86,50 +85,50 @@ function delConfirm(isDisabled) {
           <s:form action="addUser" method="post" namespace="/user">
             <fieldset>
             <p>
-              <label><s:text name="username"/></label>
+              <label>用户名</label>
               <s:textfield id="addusername" name="addusername" cssClass="text-input small-input"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addusername" />
               <br />
-              <small><s:text name="username"/></small> </p>
+              <small>用户名</small> </p>
             <p>
-              <label><s:text name="password"/></label>
+              <label>密码</label>
               <s:password id="addpassword" name="addpassword" cssClass="text-input small-input"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addpassword" />
               <br />
-              <small><s:text name="password"/></small> </p>
+              <small>密码</small> </p>
             <p>
-              <label><s:text name="realname"/></label>
+              <label>真实姓名</label>
               <s:textfield id="addname" name="addname" cssClass="text-input small-input"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addname" />
               <br />
-              <small><s:text name="password"/></small> </p>
+              <small>真实姓名</small> </p>
             <p>
-              <label><s:text name="email"/></label>
+              <label>电子邮箱</label>
               <s:textfield id="addemail" name="addemail" cssClass="text-input small-input datepicker"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addemail" />
               <br />
-              <small><s:text name="email"/></small></p>
+              <small>电子邮箱</small></p>
             <p>
-              <label><s:text name="tel"/></label>
+              <label>电话</label>
               <s:textfield id="addtel" name="addtel" cssClass="text-input small-input datepicker"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addtel" />
               <br />
-              <small><s:text name="tel"/></small> 
+              <small>电话</small> 
               </p>
             <p>
-              <label><s:text name="address"/></label>
+              <label>地址</label>
               <s:textfield id="addaddress" name="addaddress" cssClass="text-input medium-input datepicker"/>
               <s:fielderror cssClass="input-notification error png_bg" fieldName="addaddress" />
               <br />
-              <small><s:text name="address"/></small> </p>
+              <small>地址</small> </p>
             <p>
-              <label><s:text name="userdescription"/></label>
+              <label>用户描述</label>
               <s:textfield cssClass="text-input medium-input datepicker" id="adddescription" name="adddescription" />
               <s:fielderror  cssClass="input-notification error png_bg" fieldName="adddescription" />
               <br />
-              <small><s:text name="userdescription"/></small> </p>
+              <small>用户描述</small> </p>
             <p>
-              <input class="button" type="submit" value="<s:text name="add"/>" />
+              <input class="button" type="submit" value="添加" />
             </p>
             </fieldset>
             <div class="clear"></div>
@@ -149,49 +148,48 @@ function delConfirm(isDisabled) {
 	    <input type="hidden" id="page" name="page" value="${pageList.pageNumber }"/>
 	    <input type="hidden" id="id" name="id" value="<s:property value='id'/>"/>
 	    <p>
-              <label><s:text name="username"/></label>
+              <label>用户名</label>
               <s:textfield id="username" name="username" cssClass="text-input medium-input" readonly="true"/>
               <br />
-              <small><s:text name="user_usernamedesc"/></small> </p>
+              <small>用户名</small> </p>
             <p>
-              <label><s:text name="password"/></label>
+              <label>密码</label>
               <s:password id="password" name="password" cssClass="text-input medium-input"/>
               <s:fielderror  cssClass="input-notification error png_bg" fieldName="password" />
               <br />
-              <small><s:text name="password"/></small> </p>
+              <small>密码</small> </p>
             <p>
-              <label><s:text name="realname"/></label>
+              <label>真实姓名</label>
               <s:textfield id="name" name="name" cssClass="text-input medium-input"/>
               <br />
-              <small><s:text name="realname"/></small> </p>
+              <small>真实姓名</small> </p>
             <p>
-              <label><s:text name="email"/></label>
+              <label>电子邮箱</label>
               <s:textfield id="email" name="email" cssClass="text-input medium-input datepicker"/>
               <br />
-              <small><s:text name="email"/></small> </p>
+              <small>电子邮箱</small> </p>
             <p>
-              <label><s:text name="tel"/></label>
+              <label>电话</label>
               <s:textfield id="tel" name="tel" cssClass="text-input medium-input datepicker"/>
               <br />
-              <small><s:text name="tel"/></small> </p>
+              <small>电话</small> </p>
             <p>
-              <label><s:text name="address"/></label>
+              <label>地址</label>
               <s:textfield id="address" name="address" cssClass="text-input medium-input datepicker"/>
               <br />
-              <small><s:text name="address"/></small> </p>
+              <small>地址</small> </p>
             <p>
-              <label><s:text name="userdescription"/></label>
+              <label>用户描述</label>
               <s:textfield cssClass="text-input medium-input datepicker" id="description" name="description" />
               <br />
-              <small><s:text name="userdescription"/></small> </p>
+              <small>用户描述</small> </p>
 	    </fieldset>
 	    <fieldset>
-	    <input class="button" type="submit" value="<s:text name="update"/>" />
+	    <input class="button" type="submit" value="更新" />
 	    </fieldset>
 	  </s:form>
 	</div>
 	</s:iterator>
-  
 </div>
 </body>
 </html>

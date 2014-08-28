@@ -18,28 +18,28 @@
 <div id="body-wrapper">
   <jsp:include page="/menu.jsp" />
   <div id="main-content">
-    <h2><s:text name="applyTeachManage"/> --> <s:text name="applyTeachManage"/></h2>
+    <h2>课程管理 --> 课程列表</h2>
     <p id="page-intro"></p>
     <div class="clear"></div>
     <div class="content-box">
       <div class="content-box-header">
         <ul class="content-box-tabs">
-          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />"><s:text name="detail"/></a></li>
+          	<li><a href="#tab1" class="<s:property value="#request.tab1default" />">课程详情</a></li>
         </ul>
         <div class="clear"></div>
       </div>
       <div class="content-box-content">
           <div class="tab-content <s:property value="#request.tab1default" />" id="tab1">
-          <s:form action="updateApplyTeach" method="post" namespace="/applyteach">
+          <s:form action="updateApplyTeach" method="get" namespace="/applyteach">
           	<s:hidden name="id" value="%{#request.applyTeach.id}"></s:hidden>
             <fieldset>
 	            <p style="font-weight:bold;">开课申请详情:</p>
 		        <table>
 		           	<tbody>
 		           		<tr>
-							<td><s:text name="realName"/>：</td>
+							<td>真实姓名：</td>
 							<td><s:property value="%{#request.applyTeach.realName}"/></td>
-				      		<td><s:text name="schoolName"/>：</td>
+				      		<td>学校名称：</td>
 							<td><s:property value="%{#request.applyTeach.schoolName}"/></td>
 				      		<td>性别：</td>
 							<td><s:property value="%{#request.applyTeach.gender}"/></td>
@@ -47,19 +47,19 @@
 							<td><s:property value="%{#request.applyTeach.age}"/></td>
 						</tr>
 		           		<tr>
-							<td><s:text name="stage"/>：</td>
+							<td>教学阶段：</td>
 							<td><s:property value="%{#request.applyTeach.stage}"/></td>
-				      		<td><s:text name="teacherTitle"/>：</td>
+				      		<td>教师职称：</td>
 							<td><s:property value="%{#request.applyTeach.teacherTitle}"/></td>
 				      		<td>教学年限：</td>
 							<td><s:property value="%{#request.applyTeach.teachYears}"/></td>
-				      		<td><s:text name="phone"/>：</td>
+				      		<td>手机号码：</td>
 							<td><s:property value="%{#request.applyTeach.phone}"/></td>
 						</tr>
 		           		<tr>
-							<td><s:text name="email"/>：</td>
+							<td>电子邮箱：</td>
 							<td><s:property value="%{#request.applyTeach.email}"/></td>
-				      		<td><s:text name="qq"/>：</td>
+				      		<td>QQ：</td>
 							<td><s:property value="%{#request.applyTeach.qq}"/></td>
 				      		<td>试讲科目：</td>
 							<td><s:property value="%{#request.applyTeach.subject}"/></td>
@@ -77,13 +77,13 @@
 							<td><s:property value="%{#request.applyTeach.endTime}"/></td>
 						</tr>
 		           		<tr>
-				      		<td><s:text name="courseBrief"/>：</td>
+				      		<td>课程简介：</td>
 							<td colspan="3"><s:property value="%{#request.applyTeach.courseBrief}"/></td>
 				      		<td>个人简介：</td>
 							<td colspan="3"><s:property value="%{#request.applyTeach.resume}"/></td>
 						</tr>
 						<tr>
-							<td><s:text name="status"/>：</td>
+							<td>审核状态：</td>
 							<td colspan="7">
 								<s:select list="@com.cyou.common.util.ApplyTeachStatus@values()" listValue="statusDesc" listKey="status" name="status" id="status" value="%{#request.applyTeach.status}" cssClass="text-input small-input"></s:select>
 							</td>
@@ -112,7 +112,7 @@
 </div>
 <script type="text/javascript">
 function delConfirm() {
-	 if (!confirm("<s:text name='category_deleteconfirm'/>")) {
+	 if (!confirm("确定删除吗？")) {
             window.event.returnValue = false;
      }
 }
