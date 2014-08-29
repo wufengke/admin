@@ -55,6 +55,7 @@ function delConfirm(isDisabled) {
 		    <display:column property="username" titleKey="Language#username"   /> 
 		    <display:column property="nickName" titleKey="Language#nickName"   /> 
 		    <display:column property="phone" titleKey="Language#phone"   /> 
+ 			<display:column property="createTime" titleKey="Language#createTime"/> 
 		    <display:column titleKey="Language#status">
 			    <c:if test="${users.disabled == true}">已停用</c:if>
 			    <c:if test="${users.disabled == false}">正常</c:if>

@@ -1,5 +1,7 @@
 package com.cyou.base.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,6 +56,9 @@ public class Account {
 	
 	@Column(name="APPLY_STATUS")
 	private String applyStatus;
+	
+	@Column(name="CREATE_TIME")
+	private Date createTime;
 	
 	/**
 	 * 无参数构造
@@ -172,5 +177,11 @@ public class Account {
 	}
 	public void setApplyStatus(String applyStatus) {
 		this.applyStatus = applyStatus;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

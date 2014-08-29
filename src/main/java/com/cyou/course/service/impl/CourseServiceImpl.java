@@ -74,7 +74,7 @@ public class CourseServiceImpl  implements CourseService{
 
 	@Override
 	public PageList getPageList(PageList pageList) {
-		PageList list = courseDao.search("from Course", null, pageList);
+		PageList list = courseDao.search("from Course c order by c.updateTime desc", null, pageList);
 		return list;
 	}
 

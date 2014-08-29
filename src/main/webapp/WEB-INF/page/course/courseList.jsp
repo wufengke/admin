@@ -83,6 +83,8 @@ function deleteConfirm() {
 		    <display:column property="courseTime" titleKey="Language#courseTime"/> 
 		    <display:column property="totalCount" titleKey="Language#totalCount" /> 
 		    <display:column property="count" titleKey="Language#count" /> 
+		     <display:column property="createTime" titleKey="Language#createTime"/> 
+		     <display:column property="updateTime" titleKey="Language#updateTime"/> 
 		    <display:column titleKey="Language#status">
 		    	<c:if test="${courseList.status == 1}">
 		    		在线
@@ -119,19 +121,19 @@ function deleteConfirm() {
 	              <s:textfield id="courseTitle" name="courseTitle" cssClass="text-input large-input" maxlength="255" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseTitle" />
 	              <br />
-	              <small>课程标题</small> </p>
+	              <small>课程标题(255字符字以内)</small> </p>
 	            <p>
 	              <label>课程简介</label>
 	              <s:textfield id="courseBrief" name="courseBrief" cssClass="text-input large-input"  maxlength="128" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseBrief" />
 	              <br />
-	              <small>课程简介</small> </p>
+	              <small>课程简介(128字符以内)</small> </p>
 	            <p>
 	              <label>课程描述</label>
 	              <s:textfield id="courseDesc" name="courseDesc" cssClass="text-input medium-input"  maxlength="32" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDesc" />
 	              <br />
-	              <small>适合的年级（例如：适合三-六年级学生）</small> 
+	              <small>适合的年级（例如：适合三-六年级学生，32字符以内）</small> 
 	            </p>
 	            <p>
 	              <label>所属老师</label>
@@ -146,13 +148,13 @@ function deleteConfirm() {
 	              <label>开课时间</label>
 	                <s:textfield name="courseTime" cssClass="text-input small-input"  readonly="true" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2008-03-08 11:30:00',maxDate:'2100-03-10 20:59:30'})" />
 	              <br />
-	              <small>开课时间一期的开课时间</small>
+	              <small>开课时间(最早的开课时间)</small>
 	            </p>  
 	            <p>
 	              <label>开课时间描述</label>
 	                <s:textfield name="courseTimeDesc" cssClass="text-input small-input" maxlength="32"/>
 	              <br />
-	              <small>用户在首页显示课程时间（例如：8月15日）</small>
+	              <small>首页显示的课程时间(例如：8月15日-8月20)</small>
 	            </p>  
 	            
 	            <p>
@@ -160,42 +162,42 @@ function deleteConfirm() {
 	              <s:textfield id="totalCount" name="totalCount" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="totalCount" />
 	              <br />
-	              <small>课程总人数</small> 
+	              <small>课程总人数(该课程最多允许的报名人数。格式为整数)</small> 
 	            </p>
 	            <p>
 	              <label>已报名人数</label>
 	              <s:textfield id="count" name="count" cssClass="text-input small-input"  maxlength="32"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="count" />
 	              <br />
-	              <small>已报名人数</small> 
+	              <small>已报名人数(此项为注水项，意在吸引报名。格式为整数)</small> 
 	            </p>
 	            <p>
 	              <label>课次</label>
 	              <s:textfield id="lessonTimes" name="lessonTimes" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessonTimes" />
 	              <br />
-	              <small>课次</small> 
+	              <small>课次(此课程一共上多少次课。格式为整数)</small> 
 	            </p>
 	            <p>
 	              <label>排序</label>
 	              <s:textfield id="rank" name="rank" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="rank" />
 	              <br />
-	              <small>课程在首页的排序位置（数字，如：1,2,3....）</small> 
+	              <small>课程在首页的排序位置，数字相同时会随机排序（整数，如：1,2,3....）</small> 
 	            </p>
 	            <p>
 	              <label>课程原价</label>
 	              <s:textfield id="originalPrice" name="originalPrice" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="originalPrice" />
 	              <br />
-	              <small>课程原价</small> 
+	              <small>课程原价(格式为整数或小数，例如0.0,100.2)</small> 
 	            </p>
 	            <p>
 	              <label>课程现价</label>
 	              <s:textfield id="price" name="price" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="price" />
 	              <br />
-	              <small>课程现价</small> 
+	              <small>课程现价(格式为整数或小数，例如0.0,100.2)</small> 
 	            </p>
 	            <p>
 	              <label>是否参与首页轮播</label>
@@ -203,16 +205,16 @@ function deleteConfirm() {
 	              </s:select>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="isRoll" />
 	              <br />
-	              <small>是否参与首页轮播</small>
+	              <small>是否参与首页轮播(在首页的轮播图位置显示课程)</small>
 	            </p>           
 	            <p>
 	              <s:fielderror />  
   
-                 <label>首页的轮播图</label> <s:file name ="myFile" label ="大图（216）"/>  
+                 <label>首页的轮播图(必填，没有时可用中图替代)</label> <s:file name ="myFile" label ="大图（216）"/>  
   
-                  <label>中图（首页的课程图）</label><s:file name ="myFile" label ="中图（172）"/>  
+                  <label>中图（首页的课程图，必填）</label><s:file name ="myFile" label ="中图（172）"/>  
   
-                  <label>小图（订单里的图）</label><s:file name ="myFile" label ="小图（50）"/>  
+                  <label>小图（订单里的图，必填）</label><s:file name ="myFile" label ="小图（50）"/>  
                   
 	              <br />
 	              <small>图片</small>
@@ -239,7 +241,7 @@ function deleteConfirm() {
 	              <s:textfield id="lessionTimes" name="lessionTimes" cssClass="text-input small-input" />
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionTimes" />
 	              <br />
-	              <small>课时</small> </p>
+	              <small>课时（整数，如1,2,3...）</small> </p>
 	            <p>
 	              <label>评论数</label>
 	              <s:textfield id="comments" name="comments" cssClass="text-input small-input"/>
@@ -252,14 +254,14 @@ function deleteConfirm() {
 	              <s:textarea id="lessionSchedule" name="lessionSchedule" cssClass="text-input large-input" cols="200" rows="10"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="lessionSchedule" />
 	              <br />
-	              <small>课程时间表（JSON格式的时间表，如：）</small> 
+	              <small>课程时间表（JSON格式的时间表，示例见文档或者参照已经存在的课程）</small> 
 	            </p>
 	            <p>
 	              <label>课程简介</label>
 	              <s:textfield id="courseDetailBrief" name="courseDetailBrief" cssClass="text-input large-input" maxlength="255"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailBrief" />
 	              <br />
-	              <small>课程详情页简介</small>
+	              <small>课程详情页简介(255字符以内)</small>
 	            </p>  
 	            
 	            <p>
@@ -267,14 +269,14 @@ function deleteConfirm() {
 	              <s:textfield id="courseDetailDesc" name="courseDetailDesc" cssClass="text-input large-input" maxlength="255"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailDesc" />
 	              <br />
-	              <small>适合学生</small> 
+	              <small>适合学生(255字符以内)</small> 
 	            </p>
 	            <p>
 	              <label>课程大纲</label>
 	              <s:textarea id="courseDetailOutline" name="courseDetailOutline" cssClass="text-input large-input" cols="200" rows="10"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailOutline" />
 	              <br />
-	              <small>课程大纲</small> 
+	              <small>课程大纲(目前只支持一个大纲的简介。JSON格式)</small> 
 	            </p>
 	            <p>
 	              <label>课程摘要</label>

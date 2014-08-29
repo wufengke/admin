@@ -48,6 +48,8 @@
 		    <display:column property="stage" titleKey="Language#stage"/> 
 		    <display:column property="teacherTitle" titleKey="Language#teacherTitle"/> 
 		    <display:column property="phone" titleKey="Language#phone"/> 
+		    <display:column property="createTime" titleKey="Language#createTime"/> 
+		    <display:column property="updateTime" titleKey="Language#updateTime"/> 
 			<display:column titleKey="Language#status"  > 
 			    <c:if test="${applyTeach.status==0}">
 			    	待审

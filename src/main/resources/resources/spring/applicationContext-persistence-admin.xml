@@ -73,6 +73,7 @@
 				<value>com.cyou.course.bean.Course</value>
 				<value>com.cyou.course.bean.CourseDetail</value>
 				<value>com.cyou.applyTeach.bean.ApplyTeach</value>
+				<value>com.cyou.userorder.bean.UserOrder</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

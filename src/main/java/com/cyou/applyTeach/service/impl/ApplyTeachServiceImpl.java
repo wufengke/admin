@@ -27,7 +27,7 @@ public class ApplyTeachServiceImpl  implements ApplyTeachService{
 	@Override
 	public PageList getPageList(PageList pageList) {
 		try {
-			return applyTeachDao.search("from ApplyTeach ", null, pageList);
+			return applyTeachDao.search("from ApplyTeach a order by a.updateTime desc", null, pageList);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return pageList;

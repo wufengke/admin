@@ -54,6 +54,15 @@
 			          </ul>
 		        </li>
 	       </sec:authorize>  
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER_ORDER"> 
+		        <li> <a href="#" class="nav-top-item" name="#">订单管理</a>
+			          <ul> 
+			          	<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER_ORDER"> 
+			             	<li><a href="/userorder/userOrderList.action" name="/userorder/">订单管理</a></li>
+			           	</sec:authorize>
+			          </ul>
+		        </li>
+	       </sec:authorize>  
        </ul>
     </div>
   </div>      

@@ -205,7 +205,7 @@ public class UserServiceImpl  implements UserService{
 	@Override
 	public PageList getOnlineUsersPageList(PageList pageList) {
 		try {
-			return userDao.search("from Account ", null, pageList);
+			return userDao.search("from Account a order by a.createTime desc", null, pageList);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return pageList;
