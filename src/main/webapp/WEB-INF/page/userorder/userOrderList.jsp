@@ -77,7 +77,7 @@
 			    	已付款
 			    </c:if>
 			    <c:if test="${order.status==2}">
-			    	已取消/以关闭
+			    	已取消/已关闭
 			    </c:if>
 			    <c:if test="${order.status==3}">
 			    	已退款

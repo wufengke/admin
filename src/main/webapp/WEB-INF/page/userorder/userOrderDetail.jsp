@@ -46,9 +46,9 @@
 							<td>课程标题：</td>
 							<td><s:property value="%{userOrder.courseTitle}"/></td>
 				      		<td>开课时间表：</td>
-							<td><s:property value="%{userOrder.courseSchedule}"/></td>
-				      		<td>课程时间Rank：</td>
-							<td><s:property value="%{userOrder.rank}"/></td>
+							<td><s:property value="%{userOrder.lessionSchedule}"/></td>
+				      		<td>课程时间序号：</td>
+							<td><s:property value="%{userOrder.lessionRank}"/></td>
 						</tr>
 		           		<tr>
 				      		<td>购买人电话：</td>

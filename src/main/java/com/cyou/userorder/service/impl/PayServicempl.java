@@ -123,7 +123,7 @@ public class PayServicempl  implements PayService{
 	}
 	@Override
 	public PageList getPageList(PageList pageList,Integer status) {
-		return payDao.search("from UserOrder uo where " + ((status == null || status == 4)? " 1=1":" uo.status=" + status), null, pageList);
+		return payDao.search("from UserOrder uo where " + ((status == null || status == 4)? " 1=1":" uo.status=" + status) + " order by uo.updateTime desc", null, pageList);
 	}
 
 }

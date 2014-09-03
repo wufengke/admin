@@ -277,7 +277,7 @@ function deleteConfirm() {
 	        initialFrameHeight: 600,
 	    });
 	    ue.ready(function(){
-			ue.setContent('<s:property value="courseDetailSummary"/>');
+			ue.setContent('<s:property value="courseDetailSummary"/>',true);
 		});
    </script>
     <div class="clear"></div>
