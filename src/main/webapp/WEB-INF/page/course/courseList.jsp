@@ -190,14 +190,14 @@ function deleteConfirm() {
 	              <s:textfield id="originalPrice" name="originalPrice" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="originalPrice" />
 	              <br />
-	              <small>课程原价(格式为整数或小数，例如0.0,100.2)</small> 
+	              <small>课程原价(格式为整数或小数，例如0.0或100.2或100)</small> 
 	            </p>
 	            <p>
 	              <label>课程现价</label>
 	              <s:textfield id="price" name="price" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="price" />
 	              <br />
-	              <small>课程现价(格式为整数或小数，例如0.0,100.2)</small> 
+	              <small>课程现价(格式为整数或小数，例如0.0或100.2或100)</small> 
 	            </p>
 	            <p>
 	              <label>是否参与首页轮播</label>
@@ -280,9 +280,7 @@ function deleteConfirm() {
 	            </p>
 	            <p>
 	              <label>课程摘要</label>
-	              <script id="editor"  name="courseDetailSummary" type="text/plain">
-	              	<s:property value="%{courseDetailSummary}"/>
-	              </script>
+	              <script id="editor"  name="courseDetailSummary" type="text/plain"></script>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseDetailSummary" />
 	              <br />
 	              <small>课程摘要</small> 
@@ -335,9 +333,6 @@ function deleteConfirm() {
 	        initialFrameWidth: 1000,
 	        initialFrameHeight: 600,
 	    });
-	    ue.ready(function(){
-			ue.setContent('<s:property value="courseDetailSummary"/>');
-		});
    </script>
     <div class="clear"></div>
     <jsp:include page="/foot.jsp" />

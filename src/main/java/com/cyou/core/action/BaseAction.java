@@ -1,6 +1,5 @@
 package com.cyou.core.action;
 
-import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -58,22 +57,21 @@ public class BaseAction extends ActionSupport implements ServletContextAware,
 
     @Override
     public void setServletContext(ServletContext context) {
-    	URLDecoder.decode("");
-	this.servletContext = context;
+    	this.servletContext = context;
     }
     
     @Override
     public void setServletResponse(HttpServletResponse response) {
-	this.httpServletResponse = response;
-	httpServletResponse.setHeader("Cache-Control", "no-cache");   
-	httpServletResponse.setContentType("text/json;charset=UTF-8");  
-	httpServletResponse.setCharacterEncoding("UTF-8");
+		this.httpServletResponse = response;
+		httpServletResponse.setHeader("Cache-Control", "no-cache");   
+		httpServletResponse.setContentType("text/json;charset=UTF-8");  
+		httpServletResponse.setCharacterEncoding("UTF-8");
     }
 
     @Override
     public void setServletRequest(HttpServletRequest request) {
-	this.httpServletRequest = request;
-	this.httpSession = request.getSession();
+		this.httpServletRequest = request;
+		this.httpSession = request.getSession();
     }
 
     @Override
