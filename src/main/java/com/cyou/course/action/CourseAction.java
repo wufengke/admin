@@ -59,7 +59,9 @@ public class CourseAction extends BaseAction{
     private List<String> myFileContentType = new ArrayList<String>();  
     private List<String> myFileFileName = new ArrayList<String>();    //文件名  
     private List<String> imageFileName = new ArrayList<String>();  
-	
+	private String bigImageUrl;
+	private String mediumImageUrl;
+	private String smallImageUrl;
     private String courseId;
     
 	@Resource
@@ -168,6 +170,9 @@ public class CourseAction extends BaseAction{
 		setPrice(course.getPrice());
 		setBigImageSideColor(course.getBigImageSideColor());
 		setCourseTimeDesc(course.getCourseTimeDesc());
+		setBigImageUrl(course.getBigImageUrl());
+		setMediumImageUrl(course.getMediumImageUrl());
+		setSmallImageUrl(course.getSmallImageUrl());
 		CourseDetail courseDetail = courseService.getCourseDetailByDetailId(courseId);
 		if(courseDetail != null){
 			setLessionTimes(courseDetail.getLessionTimes());
@@ -370,6 +375,9 @@ public class CourseAction extends BaseAction{
 					setOriginalPrice(course.getOriginalPrice());
 					setPrice(course.getPrice());
 					setIsRoll(Integer.parseInt(course.getIsRoll()));
+					setBigImageUrl(course.getBigImageUrl());
+					setMediumImageUrl(course.getMediumImageUrl());
+					setSmallImageUrl(course.getSmallImageUrl());
 				}
 			}else {
 				return INPUT;
@@ -676,6 +684,23 @@ public class CourseAction extends BaseAction{
 	public void setBigImageSideColor(String bigImageSideColor) {
 		this.bigImageSideColor = bigImageSideColor;
 	}
-	
+	public String getBigImageUrl() {
+		return bigImageUrl;
+	}
+	public void setBigImageUrl(String bigImageUrl) {
+		this.bigImageUrl = bigImageUrl;
+	}
+	public String getMediumImageUrl() {
+		return mediumImageUrl;
+	}
+	public void setMediumImageUrl(String mediumImageUrl) {
+		this.mediumImageUrl = mediumImageUrl;
+	}
+	public String getSmallImageUrl() {
+		return smallImageUrl;
+	}
+	public void setSmallImageUrl(String smallImageUrl) {
+		this.smallImageUrl = smallImageUrl;
+	}
 	
 }

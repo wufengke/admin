@@ -210,11 +210,11 @@ function deleteConfirm() {
 	            <p>
 	              <s:fielderror />  
   
-                 <label>首页的轮播图(必填，没有时可用中图替代)</label> <s:file name ="myFile" label ="大图（216）"/>  
+                 <label>首页的轮播图(必填，没有时可用中图替代)</label> <s:file name ="myFile" label ="大图（216）"/><img src="http://www.demo.com${bigImageUrl}" alt="" />   
   
-                  <label>中图（首页的课程图，必填）</label><s:file name ="myFile" label ="中图（172）"/>  
+                  <label>中图（首页的课程图，必填）</label><s:file name ="myFile" label ="中图（172）"/>  <img src="http://www.demo.com${mediumImageUrl}" alt="" /> 
   
-                  <label>小图（订单里的图，必填）</label><s:file name ="myFile" label ="小图（50）"/>  
+                  <label>小图（订单里的图，必填）</label><s:file name ="myFile" label ="小图（50）"/>  <img src="http://www.demo.com${smallImageUrl}" alt="" /> 
                   
 	              <br />
 	              <small>图片</small>
