@@ -63,6 +63,15 @@
 			          </ul>
 		        </li>
 	       </sec:authorize>  
+	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_FEEDBACK"> 
+		        <li> <a href="#" class="nav-top-item" name="#">用户反馈管理</a>
+			          <ul> 
+			          	<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER_ORDER"> 
+			             	<li><a href="/feedback/feedbackList.action" name="/feedback/">用户建议</a></li>
+			           	</sec:authorize>
+			          </ul>
+		        </li>
+	       </sec:authorize>  
        </ul>
     </div>
   </div>      

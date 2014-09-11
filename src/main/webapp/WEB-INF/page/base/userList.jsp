@@ -63,16 +63,16 @@ function delConfirm(isDisabled) {
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id"  title="ID"   style="width:5%"/>   
-		    <display:column property="username" titleKey="Language#username"   /> 
-		    <display:column property="name" titleKey="Language#realname"   /> 
-		    <display:column property="email" titleKey="Language#email"   /> 
-		    <display:column property="tel" titleKey="Language#tel"  sortable="false"/> 
-		    <display:column property="description" titleKey="Language#userdescription"  />   
-		    <display:column titleKey="Language#userdisabled">
+		    <display:column property="username" title="用户名"   /> 
+		    <display:column property="name" title="姓名"   /> 
+		    <display:column property="email" title="邮箱"   /> 
+		    <display:column property="tel" title="电话"/> 
+		    <display:column property="description" title="账号描述"  />   
+		    <display:column title="是否已停权">
 			    <c:if test="${userList.disabled == true}">是</c:if>
 			    <c:if test="${userList.disabled == false}">否</c:if>
 		    </display:column>   
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column title="操作" media="html" >
      			<a href="#update${userList.id}" rel="modal"  >更新</a>
      			<a href='deleteUser.action?id=${userList.id}&page=${pageList.pageNumber }'  onclick="javascript:return delConfirm(${userList.disabled});">启停权</a>
      			<a href='userRole.action?id=${userList.id}&page=${pageList.pageNumber }' >用户角色</a>

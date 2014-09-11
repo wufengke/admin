@@ -78,14 +78,14 @@ function deleteConfirm() {
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id"  title="ID" style="width:5%"/>   
-		    <display:column property="courseTitle" titleKey="Language#courseTitle" /> 
-		    <display:column property="userRealName" titleKey="Language#userRealName" /> 
-		    <display:column property="courseTime" titleKey="Language#courseTime"/> 
-		    <display:column property="totalCount" titleKey="Language#totalCount" /> 
-		    <display:column property="count" titleKey="Language#count" /> 
-		     <display:column property="createTime" titleKey="Language#createTime"/> 
-		     <display:column property="updateTime" titleKey="Language#updateTime"/> 
-		    <display:column titleKey="Language#status">
+		    <display:column property="courseTitle" title="课程标题" /> 
+		    <display:column property="userRealName" title="教师姓名" /> 
+		    <display:column property="courseTime" title="最早开课时间"/> 
+		    <display:column property="totalCount" title="总人数" /> 
+		    <display:column property="count" title="已报名人数" /> 
+		     <display:column property="createTime" title="创建时间"/> 
+		     <display:column property="updateTime" title="更新时间"/> 
+		    <display:column title="课程状态">
 		    	<c:if test="${courseList.status == 1}">
 		    		在线
 		    	</c:if>
@@ -96,7 +96,7 @@ function deleteConfirm() {
 		    		下线
 		    	</c:if>
 		    </display:column>
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column title="操作" media="html" >
      			<a href="deleteCourse.action?id=${courseList.id}&page=${pageList.pageNumber }" onclick="javascript:return deleteConfirm();" >删除</a>
      			<c:if test="${courseList.status == 1}">
 		    			<a href='courseOperation.action?id=${courseList.id}&page=${pageList.pageNumber }&status=2'  onclick="javascript:return offlineConfirm();" >下线</a>

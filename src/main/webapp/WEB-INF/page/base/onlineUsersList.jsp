@@ -52,27 +52,27 @@ function delConfirm(isDisabled) {
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id"  title="ID"   style="width:5%"/>   
-		    <display:column property="username" titleKey="Language#username"   /> 
-		    <display:column property="nickName" titleKey="Language#nickName"   /> 
-		    <display:column property="phone" titleKey="Language#phone"   /> 
- 			<display:column property="createTime" titleKey="Language#createTime"/> 
-		    <display:column titleKey="Language#status">
+		    <display:column property="username" title="用户名"   /> 
+		    <display:column property="nickName" title="昵称"   /> 
+		    <display:column property="phone" title="手机号"   /> 
+ 			<display:column property="createTime" title="创建时间"/> 
+		    <display:column title="账号状态">
 			    <c:if test="${users.disabled == true}">已停用</c:if>
 			    <c:if test="${users.disabled == false}">正常</c:if>
 		    </display:column>   
-		    <display:column titleKey="Language#accountType">
+		    <display:column titleKey="账号类型">
 			    <c:if test="${users.accountType == 0}">学生</c:if>
 			    <c:if test="${users.accountType == 1}">老师</c:if>
 		    </display:column>   
-		    <display:column titleKey="Language#type">
+		    <display:column titleKey="注册类型">
 			    <c:if test="${users.type == 0}">邮箱注册</c:if>
 			    <c:if test="${users.type == 1}">手机号注册</c:if>
 		    </display:column>   
-		    <display:column titleKey="Language#applyStatus">
+		    <display:column titleKey="是否已申请开课">
 			    <c:if test="${users.applyStatus == 1}">已申请</c:if>
 			    <c:if test="${users.applyStatus == 0}">未申请</c:if>
 		    </display:column>   
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column title="操作" media="html" >
      			<a href='resetUserStatus.action?id=${users.id}&page=${pageList.pageNumber }'  onclick="javascript:return delConfirm(${users.disabled});">更改状态</a>
      			<a href='resetUserAccountType.action?id=${users.id}&page=${pageList.pageNumber }'  onclick="">更改用户账户类型</a>
      		</display:column>

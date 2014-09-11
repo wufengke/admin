@@ -47,9 +47,9 @@
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id"  title="ID"   style="width:5%"/>   
-		    <display:column property="name" titleKey="Language#role_name"   /> 
-		    <display:column property="description" titleKey="Language#role_description"  />    
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column property="name" title="角色名称"   /> 
+		    <display:column property="description" title="角色描述"  />    
+		    <display:column title="操作" media="html" >
      			<a href="#update${roleList.id}" rel="modal"  >更新</a>
      			<a href="/role/deleteRole.action?id=${roleList.id}" onclick="return delconfirm();">删除</a>
      		</display:column>

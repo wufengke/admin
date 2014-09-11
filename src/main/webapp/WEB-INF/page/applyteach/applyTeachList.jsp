@@ -43,14 +43,14 @@
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id" title="ID" style="width:5%"/>   
-		    <display:column property="realName" titleKey="Language#realName"/> 
-		    <display:column property="schoolName" titleKey="Language#schoolName"/> 
-		    <display:column property="stage" titleKey="Language#stage"/> 
-		    <display:column property="teacherTitle" titleKey="Language#teacherTitle"/> 
-		    <display:column property="phone" titleKey="Language#phone"/> 
-		    <display:column property="createTime" titleKey="Language#createTime"/> 
-		    <display:column property="updateTime" titleKey="Language#updateTime"/> 
-			<display:column titleKey="Language#status"  > 
+		    <display:column property="realName" title="真实姓名"/> 
+		    <display:column property="schoolName" title="学校名称"/> 
+		    <display:column property="stage" title="教学阶段"/> 
+		    <display:column property="teacherTitle" title="教室职称"/> 
+		    <display:column property="phone" title="手机号"/> 
+		    <display:column property="createTime" title="创建时间"/> 
+		    <display:column property="updateTime" title="更新时间"/> 
+			<display:column title="申请状态"  > 
 			    <c:if test="${applyTeach.status==0}">
 			    	待审
 			    </c:if>
@@ -61,7 +61,7 @@
 			    	拒绝
 			    </c:if>
 		    </display:column>
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column title="操作" media="html" >
      			<a href="lookApplyTeachDetail?id=${applyTeach.id}&page=${pageList.pageNumber }">查看详情</a>
      			<c:if test="${applyTeach.status==0}">
 		    		<a href="resetApplyTeachStatus.action?id=${applyTeach.id}&page=${pageList.pageNumber }&status=-1">拒绝</a>

@@ -74,6 +74,8 @@
 				<value>com.cyou.course.bean.CourseDetail</value>
 				<value>com.cyou.applyTeach.bean.ApplyTeach</value>
 				<value>com.cyou.userorder.bean.UserOrder</value>
+				<value>com.cyou.feedback.bean.Feedback</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">

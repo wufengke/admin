@@ -62,14 +62,14 @@
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
 		    <display:column property="id" title="ID" style="width:5%"/>   
-		    <display:column property="orderId" titleKey="Language#orderId"/>
-		    <display:column property="realName" titleKey="Language#realName"/> 
-		    <display:column property="courseTitle" titleKey="Language#courseTitle"/> 
-		    <display:column property="amount" titleKey="Language#amount"/> 
-		    <display:column property="phone" titleKey="Language#phone"/> 
-		    <display:column property="createTime" titleKey="Language#createTime"/> 
-		    <display:column property="updateTime" titleKey="Language#updateTime"/> 
-		    <display:column titleKey="Language#status"  > 
+		    <display:column property="orderId" title="订单号"/>
+		    <display:column property="realName" title="真实姓名"/> 
+		    <display:column property="courseTitle" title="课程标题"/> 
+		    <display:column property="amount" title="订单金额"/> 
+		    <display:column property="phone" title="订单电话"/> 
+		    <display:column property="createTime" title="创建时间"/> 
+		    <display:column property="updateTime" title="更新时间"/> 
+		    <display:column title="订单状态"  > 
 			    <c:if test="${order.status==0}">
 			    	未付款
 			    </c:if>
@@ -83,7 +83,7 @@
 			    	已退款
 			    </c:if>
 		    </display:column>
-		    <display:column titleKey="Language#operate" media="html" >
+		    <display:column title="操作" media="html" >
      			<a href="lookUserOrderDetail?orderId=${order.orderId}&page=${pageList.pageNumber }&tab=${requestScope.tab}">查看订单详情</a>
      		</display:column>
 		  </display:table> 
