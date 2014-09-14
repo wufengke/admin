@@ -60,15 +60,15 @@ function delConfirm(isDisabled) {
 			    <c:if test="${users.disabled == true}">已停用</c:if>
 			    <c:if test="${users.disabled == false}">正常</c:if>
 		    </display:column>   
-		    <display:column titleKey="账号类型">
+		    <display:column title="账号类型">
 			    <c:if test="${users.accountType == 0}">学生</c:if>
 			    <c:if test="${users.accountType == 1}">老师</c:if>
 		    </display:column>   
-		    <display:column titleKey="注册类型">
+		    <display:column title="注册类型">
 			    <c:if test="${users.type == 0}">邮箱注册</c:if>
 			    <c:if test="${users.type == 1}">手机号注册</c:if>
 		    </display:column>   
-		    <display:column titleKey="是否已申请开课">
+		    <display:column title="是否已申请开课">
 			    <c:if test="${users.applyStatus == 1}">已申请</c:if>
 			    <c:if test="${users.applyStatus == 0}">未申请</c:if>
 		    </display:column>   
