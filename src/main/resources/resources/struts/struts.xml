@@ -26,7 +26,7 @@
     
     <!-- 上传过程中临时文件存放目录 -->
     <constant name="struts.multipart.saveDir" value="D:\"/>
-    <constant name="struts.multipart.maxSize" value="12121212121121"/>
+    <constant name="struts.multipart.maxSize" value="1024000"/>
     <!-- 
 	<package name="struts2" extends="struts-default">
          <action name="upload"  class="com.broadengate.struts.UploadAction">
