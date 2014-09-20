@@ -85,7 +85,22 @@ function deleteConfirm() {
 	              <br />
 	              <small>所属老师</small> 
 	            </p>
-	            
+	             <p>
+	              <label>课程分类</label>
+	              <s:select list="#{'1':'大学','2':'高中','3':'中学','4':'小学','5':'外语','6':'素质教育'}" headerKey="-1" headerValue="请选择" listValue="value" listKey="key" name="courseType" id="courseType" cssClass="text-input small-input">
+	              </s:select>
+	              <s:fielderror cssClass="input-notification error png_bg" fieldName="courseType" />
+	              <br />
+	              <small>课程分类</small> 
+	            </p>
+	            <p>
+	              <label>价格分类</label>
+	              <s:select list="#{'0':'免费','1':'收费'}" headerKey="-1" headerValue="请选择" listValue="value" listKey="key" name="priceType" id="priceType" cssClass="text-input small-input">
+	              </s:select>
+	              <s:fielderror cssClass="input-notification error png_bg" fieldName="priceType" />
+	              <br />
+	              <small>价格分类</small> 
+	            </p>
 	            <p>
 	              <label>开课时间</label>
 	                <s:textfield name="courseTime" cssClass="text-input small-input"  readonly="true" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2008-03-08 11:30:00',maxDate:'2100-03-10 20:59:30'})" />
@@ -162,13 +177,13 @@ function deleteConfirm() {
 	              <br />
 	               <small>图片</small>
 	            </p> 
-	            <p>
+	            <%-- <p>
 	              <label>轮播图两边的颜色</label>
 	              <s:textfield id="bigImageSideColor" name="bigImageSideColor" cssClass="text-input small-input"/>
 	              <s:fielderror cssClass="input-notification error png_bg" fieldName="bigImageSideColor" />
 	              <br />
 	              <small>首页轮播图不是全部左右铺满屏幕的，两边需要填充颜色代码（如：#ffffff代表白色）</small> 
-	            </p>          
+	            </p>  --%>         
 	            <p>
 	              <input class="button" type="submit" value="下一步" />
 	            </p>

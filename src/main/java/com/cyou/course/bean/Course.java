@@ -71,6 +71,13 @@ public class Course implements Serializable {
 	private Double price;
 	@Column(name="BIG_IMAGE_SIDE_COLOR")
 	private String bigImageSideColor;
+
+	@Column(name="COURSE_TYPE")
+	private String courseType;
+	
+	@Column(name="PRICE_TYPE")
+	private String priceType;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -250,4 +257,21 @@ public class Course implements Serializable {
 	public void setBigImageSideColor(String bigImageSideColor) {
 		this.bigImageSideColor = bigImageSideColor;
 	}
+
+	public String getCourseType() {
+		return courseType;
+	}
+
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
+	}
+
+	public String getPriceType() {
+		return priceType;
+	}
+
+	public void setPriceType(String priceType) {
+		this.priceType = priceType;
+	}
+	
 }

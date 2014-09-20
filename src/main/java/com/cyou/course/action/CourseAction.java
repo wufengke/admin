@@ -64,6 +64,10 @@ public class CourseAction extends BaseAction{
 	private String smallImageUrl;
     private String courseId;
     
+    private String courseType;
+    
+    private String priceType;
+    
 	@Resource
 	private CourseService courseService;
 	
@@ -173,6 +177,8 @@ public class CourseAction extends BaseAction{
 		setBigImageUrl(course.getBigImageUrl());
 		setMediumImageUrl(course.getMediumImageUrl());
 		setSmallImageUrl(course.getSmallImageUrl());
+		setCourseType(course.getCourseType());
+		setPriceType(course.getPriceType());
 		CourseDetail courseDetail = courseService.getCourseDetailByDetailId(courseId);
 		if(courseDetail != null){
 			setLessionTimes(courseDetail.getLessionTimes());
@@ -214,6 +220,8 @@ public class CourseAction extends BaseAction{
 		course.setOriginalPrice(originalPrice);
 		course.setPrice(price);
 		course.setBigImageSideColor(bigImageSideColor);
+		course.setCourseType(courseType);
+		course.setPriceType(priceType);
 		Users u = userService.getUsersByUserId(userId);
 		if(u != null){
 			course.setUserImageUrl(u.getImageUrl());
@@ -378,6 +386,8 @@ public class CourseAction extends BaseAction{
 					setBigImageUrl(course.getBigImageUrl());
 					setMediumImageUrl(course.getMediumImageUrl());
 					setSmallImageUrl(course.getSmallImageUrl());
+					setCourseType(course.getCourseType());
+					setPriceType(course.getPriceType());
 				}
 			}else {
 				return INPUT;
@@ -427,6 +437,8 @@ public class CourseAction extends BaseAction{
 			course.setOriginalPrice(originalPrice);
 			course.setPrice(price);
 			course.setBigImageSideColor(bigImageSideColor);
+			course.setCourseType(courseType);
+			course.setPriceType(priceType);
 			Users u = userService.getUsersByUserId(userId);
 			if(u != null){
 				course.setUserImageUrl(u.getImageUrl());
@@ -701,6 +713,18 @@ public class CourseAction extends BaseAction{
 	}
 	public void setSmallImageUrl(String smallImageUrl) {
 		this.smallImageUrl = smallImageUrl;
+	}
+	public String getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
+	}
+	public String getPriceType() {
+		return priceType;
+	}
+	public void setPriceType(String priceType) {
+		this.priceType = priceType;
 	}
 	
 }
