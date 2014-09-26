@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import com.cyou.base.bean.Account;
 import com.cyou.base.bean.Role;
 import com.cyou.base.bean.User;
+import com.cyou.base.bean.Users;
+import com.cyou.base.service.ProvinceCityService;
 import com.cyou.base.service.UserService;
 import com.cyou.common.util.UUIDUtil;
 import com.cyou.core.action.BaseAction;
@@ -103,10 +105,108 @@ public class UserAction extends BaseAction{
 		httpServletRequest.setAttribute("pageList", userService.getPageList(this.getPagelist(),objs));
 		return SUCCESS;
 	}
+	
 	@Action(value = "/onlineUsersList", results = { @Result(name = SUCCESS, location = "/WEB-INF/page/base/onlineUsersList.jsp") })
 	public String onlineUsersList(){
 		httpServletRequest.setAttribute("pageList", userService.getOnlineUsersPageList(this.getPagelist()));
 		return SUCCESS;
+	}
+	
+	private String userId;
+	private Integer provinceId;
+	private Integer cityId;
+	private Integer status;
+	private String comments;
+	@Resource
+	private ProvinceCityService provinceCityService;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+	public Integer getCityId() {
+		return cityId;
+	}
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	@Action(value = "/lookUsersDetail", results = { 
+			@Result(name = SUCCESS,location = "/WEB-INF/page/base/teacherUserApplyDetail.jsp")})
+	public String lookUsersDetail(){
+		try {
+			Users user = null;
+			if(StringUtils.isNotBlank(userId)){
+				user = userService.getUsersByUserId(userId);
+				if(user != null){
+					setProvinceId(user.getProvinceId());
+					setCityId(user.getCityId());
+				}else{
+					user = new Users();
+				}
+			}else{
+				user = new Users();
+			}
+			httpServletRequest.setAttribute("provinceList", provinceCityService.getProvinceList());
+			httpServletRequest.setAttribute("cityList", provinceCityService.getCityList());
+			httpServletRequest.setAttribute("user", user);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+	@Action(value = "/updateTeacherApply", results = { 
+			@Result(name = SUCCESS,location = "/WEB-INF/page/base/teacherUserApplyDetail.jsp"),
+			@Result(name = INPUT,location = "/WEB-INF/page/base/teacherUserApplyDetail.jsp")})
+	public String updateTeacherApply(){
+		try {
+			Users user = null;
+			
+			if(StringUtils.isNotBlank(userId)){
+				user = userService.getUsersByUserId(userId);
+				if(user != null){
+					user.setStatus(status.toString());
+					user.setComments(comments);
+					userService.updateUsers(user);
+				}else{
+					user = new Users();
+				}
+			}else {
+				user = new Users();
+			}
+			httpServletRequest.setAttribute("user", user);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			httpServletRequest.setAttribute("provinceList", provinceCityService.getProvinceList());
+			httpServletRequest.setAttribute("cityList", provinceCityService.getCityList());
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+	public void validateUpdateTeacherApply(){
+		super.validate();
+		httpServletRequest.setAttribute("provinceList", provinceCityService.getProvinceList());
+		httpServletRequest.setAttribute("cityList", provinceCityService.getCityList());
 	}
 	/**
 	 * 添加用户的方法

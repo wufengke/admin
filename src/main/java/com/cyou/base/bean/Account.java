@@ -1,5 +1,6 @@
 package com.cyou.base.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ACCOUNT")
-public class Account {
+public class Account implements Serializable{
 	
 	private static final long serialVersionUID = 8026813053768023527L;
 	//自增id
@@ -59,6 +60,8 @@ public class Account {
 	
 	@Column(name="CREATE_TIME")
 	private Date createTime;
+	@Column(name="IS_ACTIVATE")
+	private String isActivate;
 	
 	/**
 	 * 无参数构造
@@ -183,5 +186,11 @@ public class Account {
 	}
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	public String getIsActivate() {
+		return isActivate;
+	}
+	public void setIsActivate(String isActivate) {
+		this.isActivate = isActivate;
 	}
 }

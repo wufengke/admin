@@ -222,4 +222,13 @@ public class UserServiceImpl  implements UserService{
 		}
 	}
 
+	@Override
+	public void updateUsers(Users user) {
+		try {
+			userDao.update(user);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+	}
+
 }

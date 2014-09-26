@@ -68,6 +68,8 @@
 				<value>com.cyou.base.bean.Role</value>
 				<value>com.cyou.base.bean.User</value>
 				<value>com.cyou.base.bean.UserRole</value>
+				<value>com.cyou.base.bean.Province</value>
+				<value>com.cyou.base.bean.City</value>
 				<value>com.cyou.base.bean.Users</value>
 				<value>com.cyou.base.bean.Account</value>
 				<value>com.cyou.course.bean.Course</value>

@@ -76,7 +76,7 @@ public class BaseAction extends ActionSupport implements ServletContextAware,
 
     @Override
     public void setSession(Map<String, Object> session) {
-	this.session = session;
+    	this.session = session;
     }
     
 	@Override

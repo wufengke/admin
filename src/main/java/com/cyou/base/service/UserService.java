@@ -90,4 +90,5 @@ public interface UserService{
 	public List<Users> getTeacherUsers();
 	
 	public void updateAccount(Account account);
+	public void updateUsers(Users user);
 }

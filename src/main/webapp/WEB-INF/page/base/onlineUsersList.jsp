@@ -67,6 +67,10 @@ function delConfirm(isDisabled) {
 		    <display:column title="注册类型">
 			    <c:if test="${users.type == 0}">邮箱注册</c:if>
 			    <c:if test="${users.type == 1}">手机号注册</c:if>
+		    </display:column> 
+		    <display:column title="邮箱是否激活">
+			    <c:if test="${users.isActivate == 1}">已激活</c:if>
+			    <c:if test="${users.isActivate == 0}">未激活</c:if>
 		    </display:column>   
 		    <display:column title="是否已申请开课">
 			    <c:if test="${users.applyStatus == 1}">已申请</c:if>
@@ -75,6 +79,7 @@ function delConfirm(isDisabled) {
 		    <display:column title="操作" media="html" >
      			<a href='resetUserStatus.action?id=${users.id}&page=${pageList.pageNumber }'  onclick="javascript:return delConfirm(${users.disabled});">更改状态</a>
      			<a href='resetUserAccountType.action?id=${users.id}&page=${pageList.pageNumber }'  onclick="">更改用户账户类型</a>
+     			<a href="lookUsersDetail?userId=${users.userId}&page=${pageList.pageNumber }">查看用户详情</a>
      		</display:column>
 		  </display:table> 
         </div>
