@@ -11,9 +11,14 @@
         <a href="<c:url value='j_spring_security_logout.action'/>" title="退出">退出</a> </div>
 		<ul id="main-nav">
 	        <!-- Accordion Menu -->
-	        <li> <a href="/login/toIndexPage.action" class="nav-top-item no-submenu" name="index.jsp">
+	        <li> 
+	        <a href="/login/toIndexPage.action" class="nav-top-item" name="index.jsp">
 		         	主页
 		         	</a> 
+		       <ul>
+		          <li><a href="/config/indexPicList.action" name="/config/">首页图片管理</a></li>
+		       </ul>
+		       
 	        </li>
 	        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_ROLE">  
 	        <li> <a href="#" class="nav-top-item" name="#">权限管理 </a>

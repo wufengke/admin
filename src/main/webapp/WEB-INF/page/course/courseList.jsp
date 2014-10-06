@@ -70,10 +70,6 @@ function deleteConfirm() {
           <s:text name="whole" id="whole"/>
           <s:text name="choose" id="choose"/>
           <input type="hidden" id="step" value="${requestScope.step }"/>
-		  <s:form id="conditionform" name="conditionform" action="courseList" method="post">
-         	<s:text name="status"/>:<s:select list="@com.cyou.common.util.Status@values()" headerKey="-1" headerValue="%{whole}" listValue="statusDesc" listKey="ordinal()" name="statusCondition" id="statusCondition" cssClass="text-input small-input"> </s:select>
-         	<input class="button" type="submit" value="查询" />
-          </s:form>
           <display:table id="courseList" name="pageList" requestURI="courseList.action"    
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
