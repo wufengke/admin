@@ -54,11 +54,6 @@ function delConfirm(isDisabled) {
 	          </div>
 	         </c:if>
           </c:if>
-		  <s:form id="conditionform" name="conditionform" action="userList" method="post">
-         	<s:text name="username"/>:<s:textfield id="conditionUsername" name="conditionUsername" cssClass="text-input" ></s:textfield>
-         	<s:text name="status"/>:<s:select list="@com.cyou.common.util.Status@values()" headerKey="-1" headerValue="%{whole}" listValue="statusDesc" listKey="ordinal()" name="disabled" id="disabled" cssClass="text-input small-input"> </s:select>
-         	<input class="button" type="submit" value="查询" />
-          </s:form>
           <display:table id="userList" name="pageList" requestURI="userList.action"    
     		size="${pageList.fullListSize }" pagesize="${pageList.objectsPerPage }" partialList="true"
     		export="true" decorator="">   
