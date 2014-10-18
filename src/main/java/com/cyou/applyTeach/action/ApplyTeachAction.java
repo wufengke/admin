@@ -46,7 +46,7 @@ public class ApplyTeachAction extends BaseAction{
 				if(at != null){
 					at.setStatus(status);
 				}
-				boolean b = applyTeachService.saveOrUpdateApplyTeach(at);
+				applyTeachService.saveOrUpdateApplyTeach(at);
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);

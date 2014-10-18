@@ -42,7 +42,16 @@
 				      		<td>学校名称：</td>
 							<td><s:property value="%{#request.applyTeach.schoolName}"/></td>
 				      		<td>性别：</td>
-							<td><s:property value="%{#request.applyTeach.gender}"/></td>
+							<td>
+								<c:choose>
+									<c:when test="${requestScope.applyTeach.gender == '1'}">
+										男
+									</c:when>
+									<c:otherwise>
+										女
+									</c:otherwise>
+								</c:choose>
+							</td>
 				      		<td>年龄：</td>
 							<td><s:property value="%{#request.applyTeach.age}"/></td>
 						</tr>
@@ -78,9 +87,7 @@
 						</tr>
 		           		<tr>
 				      		<td>课程简介：</td>
-							<td colspan="3"><s:property value="%{#request.applyTeach.courseBrief}"/></td>
-				      		<td>个人简介：</td>
-							<td colspan="3"><s:property value="%{#request.applyTeach.resume}"/></td>
+							<td colspan="7"><s:property value="%{#request.applyTeach.courseBrief}"/></td>
 						</tr>
 						<tr>
 							<td>审核状态：</td>
