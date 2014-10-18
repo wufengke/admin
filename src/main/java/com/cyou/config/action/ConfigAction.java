@@ -128,9 +128,9 @@ public class ConfigAction extends BaseAction {
 				Date time=new Date();
 				SimpleDateFormat fmt=new SimpleDateFormat("yyyyMMddHHmmssSSSS");
 				String fileName=fmt.format(time)+extention;
-				File dst=new File(basePath+"\\"+fileName);
+				File dst=new File(basePath+"/"+fileName);
 				com.cyou.base.util.FileUtil.copy(file, dst);
-				pic.setPath("images/show/"+fileName);
+				pic.setPath("http://class.agaokao.com/images/show/"+fileName);
 			}
 			configService.addIndexPic(pic);
 		} catch (Exception e) {
@@ -184,18 +184,13 @@ public class ConfigAction extends BaseAction {
 				IndexPic ip = configService.getIndexPicById(this.getId());
 				if(this.file!=null){					
 					String basePath=PropertyUtil.getProperty("indexPictureLocation");
-					//remove preve file
-					String prevFileName=ip.getPath().replace("images/show/", "");
-					File prevFile=new File(basePath+prevFileName);
-					prevFile.delete();
-					//save file and set path
-					String extention=".png";//com.cyou.base.util.FileUtil.getExtention(file.getName());
+					String extention=".png";
 					Date time=new Date();
 					SimpleDateFormat fmt=new SimpleDateFormat("yyyyMMddHHmmssSSSS");
 					String fileName=fmt.format(time)+extention;
-					File dst=new File(basePath+"\\"+fileName);
+					File dst=new File(basePath+"/"+fileName);
 					com.cyou.base.util.FileUtil.copy(file, dst);
-					ip.setPath("images/show/"+fileName);
+					ip.setPath("http://class.agaokao.com/images/show/"+fileName);
 				}
 				
 				ip.setRank(this.getRank());
