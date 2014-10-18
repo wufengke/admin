@@ -1,7 +1,6 @@
 package com.cyou.config.action;
 
 import java.io.File;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
-import org.aspectj.util.FileUtil;
 import org.springframework.stereotype.Controller;
 
 import com.cyou.base.util.PropertyUtil;
@@ -106,8 +104,9 @@ public class ConfigAction extends BaseAction {
 		return SUCCESS;
 	}
 	
-	@Action(value = "/addIndexPic", results = { @Result(name = SUCCESS, type="redirect",location = "/config/indexPicList.action?page=${page}"), 
-			   @Result(name = INPUT, location = "/config/indexPicList.action?page=${page}")
+	@Action(value = "/addIndexPic", results = { 
+			@Result(name = SUCCESS, type="redirect",location = "/config/indexPicList.action?page=${page}"), 
+			   @Result(name = INPUT, type="redirect", location = "/config/indexPicList.action?page=${page}")
            })
 	public String addIndexPic()
 	{
@@ -177,7 +176,7 @@ public class ConfigAction extends BaseAction {
 		return SUCCESS;
 	}
 	
-	@Action(value="/updateIndexPic",results={@Result(name=SUCCESS,location="/config/indexPicList.action?page=${page}")})
+	@Action(value="/updateIndexPic",results={@Result(name=SUCCESS,type="redirect",location="/config/indexPicList.action?page=${page}")})
 	public String updateIndexPic()
 	{
 		try{
