@@ -67,7 +67,6 @@ function deleteConfirm() {
 	          </div>
 	         </c:if>
           </c:if>
-          <s:text name="whole" id="whole"/>
           <s:text name="choose" id="choose"/>
           <input type="hidden" id="step" value="${requestScope.step }"/>
           <display:table id="courseList" name="pageList" requestURI="courseList.action"    
