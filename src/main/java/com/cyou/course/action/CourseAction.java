@@ -232,9 +232,9 @@ public class CourseAction extends BaseAction{
             return INPUT;  
         for (int i = 0; i < myFile.size(); i++) {  
             imageFileName.add(new Date().getTime()+ getExtention(this.getMyFileFileName().get(i))) ;  
-            File dir = new File(PropertyUtil.getProperty("imagesLocation")+courseId +"/" + i);
+            File dir = new File(PropertyUtil.getProperty("imagesLocation")+"/"+courseId +"/" + i);
             dir.mkdirs();
-            File imageFile = new File(PropertyUtil.getProperty("imagesLocation")+ courseId +"/" + i +"/" + imageFileName.get(i));   
+            File imageFile = new File(PropertyUtil.getProperty("imagesLocation")+"/"+ courseId +"/" + i +"/" + imageFileName.get(i));   
             copy(myFile.get(i), imageFile); 
         }  
         
@@ -449,9 +449,9 @@ public class CourseAction extends BaseAction{
 	            return INPUT;  
 	        for (int i = 0; i < myFile.size(); i++) {  
 	            imageFileName.add(new Date().getTime()+ getExtention(this.getMyFileFileName().get(i))) ;  
-	            File dir = new File(PropertyUtil.getProperty("imagesLocation")+courseId +"/" + i);
+	            File dir = new File(PropertyUtil.getProperty("imagesLocation")+"/"+courseId +"/" + i);
 	            dir.mkdirs();
-	            File imageFile = new File(PropertyUtil.getProperty("imagesLocation")+ courseId +"/" + i +"/" + imageFileName.get(i));   
+	            File imageFile = new File(PropertyUtil.getProperty("imagesLocation")+"/"+ courseId +"/" + i +"/" + imageFileName.get(i));   
 	            copy(myFile.get(i), imageFile); 
 	        }  
 	        
